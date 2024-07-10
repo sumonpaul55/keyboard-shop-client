@@ -9,25 +9,10 @@ const Navbaritems = ["home", "products", "cart"]
 const finalNavItems = Navbaritems.map((items) => {
     return {
         key: items,
-        label: <Link to={`${items}`}>{items}</Link>
+        label: <Link to={`${items === "home" ? "/" : items}`}>{items}</Link>
     }
 })
 
-
-// const navItems = [
-//     {
-//         key: "Home",
-//         label: <Link to="/">Home</Link>
-//     },
-//     {
-//         key: "Products",
-//         label: <Link to="/product">Products</Link>
-//     },
-//     {
-//         key: "cart",
-//         label: <Link to="/cart">Cart</Link>
-//     }
-// ]
 
 const MainLayout = () => {
 
@@ -47,7 +32,7 @@ const MainLayout = () => {
                 <div className="container mx-auto">
                     <div className='flex items-center justify-between'>
                         <div className="flex-1">
-                            <Link to="/"> <h2 className='font-bold text-xl text-white'>KyBoard</h2></Link>
+                            <Link to="/"> <h2 className='font-bold text-sm sm:text-xl md:text-2xl text-white'>Key<span className='text-primary'>B</span>oardHub</h2></Link>
                         </div>
                         <Menu
                             theme="dark"

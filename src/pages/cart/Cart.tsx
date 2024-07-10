@@ -2,7 +2,13 @@ import React from 'react'
 
 const Cart = () => {
     return (
-        <div>Cart</div>
+        <main>
+            <section>
+                <div className="container mx-auto">
+                    <h1>Cart</h1>
+                </div>
+            </section>
+        </main>
     )
 }
 
