@@ -3,6 +3,21 @@
 Run this project locally
 
 Download the project > npm install > npm run dev
+.
+.
+.
+.
+.
+..
+.
+.
+.
+.
+.
+.
+.
+.
+.
 
 Currently, two official plugins are available:
 
