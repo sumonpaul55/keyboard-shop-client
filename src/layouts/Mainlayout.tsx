@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 const { Header, Content } = Layout;
 import "./navbar.css"
 
-const Navbaritems = ["home", "products", "cart"]
+const Navbaritems = ["home", "products", "cart", "product-manage"]
 
 const finalNavItems = Navbaritems.map((items) => {
     return {
@@ -12,6 +12,7 @@ const finalNavItems = Navbaritems.map((items) => {
         label: <Link to={`${items === "home" ? "/" : items}`}>{items}</Link>
     }
 })
+
 
 
 const MainLayout = () => {
@@ -27,8 +28,7 @@ const MainLayout = () => {
                     width: '100%',
                     display: 'flex',
                     alignItems: 'center',
-                }}
-            >
+                }}>
                 <div className="container mx-auto">
                     <div className='flex items-center justify-between'>
                         <div className="flex-1">
