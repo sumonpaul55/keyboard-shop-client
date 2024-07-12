@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 
-
-
 const ProductManagement: React.FC = () => {
     const [sideBarOpen, setSidebarOpen] = useState(false)
     return (

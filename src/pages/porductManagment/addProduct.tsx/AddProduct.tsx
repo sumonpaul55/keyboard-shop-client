@@ -4,10 +4,12 @@ import { Button, Col, Form, InputNumber, message, Row, Upload } from 'antd';
 import type { FormProps, GetProp, UploadFile, UploadProps } from 'antd';
 import { toast } from 'sonner';
 import InputItems from '../../../components/formInput/InputItems';
+import { useCreateProductMutation } from '../../../redux/features/products/productApi';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const AddProduct: React.FC = () => {
+    const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     // const [imageUrl, setImageUrl] = useState("")
     const props: UploadProps = {
@@ -30,36 +32,32 @@ const AddProduct: React.FC = () => {
         const formData = new FormData();
         fileList.forEach((file) => {
             formData.append('image', file as FileType);
-            console.log(file)
         });
         fetch('https://api.imgbb.com/1/upload?key=9886ac79a2243ffd44ce467dd58abf5a', {
             body: formData,
             method: 'POST',
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
+        }).then((res) => res.json())
+            .then(async (data) => {
                 setFileList([]);
                 message.success('upload successfully.');
                 if (data?.data?.display_url) {
                     const productData = {
                         rating, description, name, price, quantity, brand, image: data?.data?.display_url
                     }
-                    // console.log(productData)
+                    const res = await createProduct(productData)
+                    console.log(res)
                     toast.success('Product Added Successfully', { id: "productImg" })
                 } else {
                     toast.error("Something went wrong Product Image not Uploading", { id: "productImg" })
                 }
-            })
-            .catch(() => {
+            }).catch(() => {
                 toast.error("Product image upload failed", { id: "productImg" })
             })
-        // console.log(values)
 
     };
 
     const onFinishFailed: FormProps['onFinishFailed'] = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        toast.error(`${errorInfo}`)
     };
 
     return (
