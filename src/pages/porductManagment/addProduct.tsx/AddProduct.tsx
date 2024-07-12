@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Col, Form, message, Row, Upload } from 'antd';
+import { Button, Col, Form, InputNumber, message, Row, Upload } from 'antd';
 import type { FormProps, GetProp, UploadFile, UploadProps } from 'antd';
-import InputItems from '../formInput/InputItems';
 import { toast } from 'sonner';
+import InputItems from '../../../components/formInput/InputItems';
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
-const AddProductForm: React.FC = () => {
+const AddProduct: React.FC = () => {
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     // const [imageUrl, setImageUrl] = useState("")
     const props: UploadProps = {
@@ -26,7 +26,7 @@ const AddProductForm: React.FC = () => {
 
     const onFinish: FormProps['onFinish'] = (values) => {
         toast.loading("Product Uploading", { id: "productImg" })
-        const { description, name, price, quantity, brand }: any = values
+        const { rating, description, name, price, quantity, brand }: any = values
         const formData = new FormData();
         fileList.forEach((file) => {
             formData.append('image', file as FileType);
@@ -43,7 +43,7 @@ const AddProductForm: React.FC = () => {
                 message.success('upload successfully.');
                 if (data?.data?.display_url) {
                     const productData = {
-                        description, name, price, quantity, brand, image: data?.data?.display_url
+                        rating, description, name, price, quantity, brand, image: data?.data?.display_url
                     }
                     // console.log(productData)
                     toast.success('Product Added Successfully', { id: "productImg" })
@@ -95,26 +95,22 @@ const AddProductForm: React.FC = () => {
 
                     <InputItems type="textarea" names="description" label="Description" errorMessage="Bio is required" />
 
+                    <Form.Item
+                        label="Rating"
+                        name="rating"
+                        rules={[{ required: true, message: "rating required max 5" }]}
+                    >
+                        <InputNumber type='number' max={5} />
+
+                    </Form.Item>
+
                     <Col span="8" style={{ margin: "auto", marginTop: "50px" }}>
                         <Button style={{ margin: "auto", width: "100%" }} type="primary" htmlType="submit">Submit</Button>
                     </Col>
                 </Form>
-
-
-
-
-
-
-
-
-
-
-                <div>
-                    {/* <img src={imageUrl} alt="" /> */}
-                </div>
-            </div >
+            </div>
         </>
     );
 };
 
-export default AddProductForm;
+export default AddProduct;
