@@ -1,10 +1,15 @@
-import { Form, Input } from 'antd'
+import { Form, Input, InputNumber } from 'antd'
 
-const InputItems = ({ type, names, label, errorMessage }: { type: string; names: string; label: string; errorMessage: string }) => {
-    const InputComponent = {
+
+
+
+
+const InputItems = ({ type, names, label, errorMessage, style }: { type: string; names: string; label: string; errorMessage: string, style?: any }) => {
+    const InputComponent: any = {
         names: Input,
         password: Input.Password,
         textarea: Input.TextArea,
+        number: InputNumber,
     }
     const InputComponents = InputComponent[type] || Input
 
@@ -14,7 +19,7 @@ const InputItems = ({ type, names, label, errorMessage }: { type: string; names:
             name={names}
             rules={[{ required: true, message: errorMessage }]}
         >
-            <InputComponents />
+            <InputComponents placeholder={names} type={type === "number" ? type : ""} style={style} />
         </Form.Item>
     )
 }
