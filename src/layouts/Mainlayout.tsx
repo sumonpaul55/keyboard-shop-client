@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd';
 import { Link, Outlet } from 'react-router-dom';
 const { Header, Content } = Layout;
 import "./navbar.css"
+import { Navbar } from './Navbar';
 
 const Navbaritems = ["home", "products", "cart", "product-manage"]
 
@@ -19,12 +20,12 @@ const MainLayout = () => {
 
 
     return (
-        <Layout style={{ height: "100vh", width: "100vw" }}>
+        <Layout>
             <Header
                 style={{
                     position: 'sticky',
                     top: 0,
-                    zIndex: 1,
+                    zIndex: 1111,
                     width: '100%',
                     display: 'flex',
                     alignItems: 'center',
@@ -43,6 +44,7 @@ const MainLayout = () => {
                     </div>
                 </div>
             </Header>
+            {/* <Navbar /> */}
             <Content style={{}}>
                 <div
                     style={{}}>
