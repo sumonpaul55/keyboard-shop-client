@@ -18,7 +18,7 @@ const Benifit = () => {
                             </div>
                             <div className='lg:max-w-[90%] mx-auto'>
                                 <h4 className="font-bold md:text-lg mt-6">7/30 days Support</h4>
-                                <ul className='mt-4 space-y-2 font-semibold'>
+                                <ul className='mt-4 space-y-2 font-semibold text-secondary-black'>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Available 7 days a week</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Expert assistance with installation</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Fast and friendly customer service</li>
@@ -33,7 +33,7 @@ const Benifit = () => {
                             </div>
                             <div className='lg:max-w-[90%] mx-auto'>
                                 <h4 className="font-bold md:text-lg mt-6">Custom Keyboard Design</h4>
-                                <ul className='mt-4 space-y-2 font-semibold'>
+                                <ul className='mt-4 space-y-2 font-semibold text-secondary-black'>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> selection of keycaps and switches</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Personalized layouts</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Expert design assistance</li>
@@ -48,7 +48,7 @@ const Benifit = () => {
                             </div>
                             <div className='lg:max-w-[90%] mx-auto'>
                                 <h4 className="font-bold md:text-lg mt-6">Free Shipping</h4>
-                                <ul className='mt-4 space-y-2 font-semibold'>
+                                <ul className='mt-4 space-y-2 font-semibold text-secondary-black'>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Free shipping worldwide</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Secure packaging</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Fast delivery times</li>
@@ -63,7 +63,7 @@ const Benifit = () => {
                             </div>
                             <div className='lg:max-w-[90%] mx-auto'>
                                 <h4 className="font-bold md:text-lg mt-6">Satisfaction Guarantee</h4>
-                                <ul className='mt-4 space-y-2 font-semibold'>
+                                <ul className='mt-4 space-y-2 font-semibold text-secondary-black'>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> 30-day return policy</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Full refunds or exchanges</li>
                                     <li className='flex items-center gap-2'><FaCheckDouble className='text-primary' /> Commitment to quality</li>
@@ -71,7 +71,6 @@ const Benifit = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>

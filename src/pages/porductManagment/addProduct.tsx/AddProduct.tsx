@@ -62,7 +62,7 @@ const AddProduct: React.FC = () => {
 
     return (
         <>
-            <div className='max-w-[600px] mx-auto shadow rounded p-6 bg-white mt-10'>
+            <div className='max-w-[80%] mx-auto shadow rounded p-6 bg-white'>
                 <Form
                     name="basic"
                     labelCol={{ span: 8 }}

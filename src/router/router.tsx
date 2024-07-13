@@ -5,6 +5,7 @@ import Cart from "../pages/cart/Cart";
 import Home from "../pages/home/Home";
 import ProductManagement from "../pages/porductManagment/ProductManagement";
 import AddProduct from "../pages/porductManagment/addProduct.tsx/AddProduct";
+import AllProducts from "../pages/porductManagment/AllProducts/AllProducts";
 
 
 const router = createBrowserRouter([
@@ -33,10 +34,16 @@ const router = createBrowserRouter([
             {
                 path: "/product-manage",
                 element: <ProductManagement />,
-                children: [{
-                    path: "add-product",
-                    element: <AddProduct></AddProduct>
-                }]
+                children: [
+                    {
+                        path: "add-product",
+                        element: <AddProduct></AddProduct>
+                    },
+                    {
+                        path: "products",
+                        element: <AllProducts />
+                    }
+                ]
             }
         ]
     },
