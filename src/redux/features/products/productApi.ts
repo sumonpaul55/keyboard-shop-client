@@ -13,15 +13,8 @@ export const productApi = baseApi.injectEndpoints({
     }),
     // get all products
     getAllProduct: builder.query({
-      query: () => ({
-        url: "/products",
-        method: "GET",
-      }),
-    }),
-    getProducts: builder.query({
       query: ({ search, category, limit }: { search?: string; category?: string; limit?: number }) => {
         const params = new URLSearchParams();
-
         if (category) {
           params.append("category", category);
         }
@@ -41,4 +34,4 @@ export const productApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery, useGetProductsQuery } = productApi;
+export const { useCreateProductMutation, useGetAllProductQuery } = productApi;

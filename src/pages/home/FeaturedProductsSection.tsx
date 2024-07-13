@@ -1,9 +1,12 @@
-import { useGetProductsQuery } from "../../redux/features/products/productApi";
+import { useGetAllProductQuery } from "../../redux/features/products/productApi";
 
 
 const FeaturedProductsSection = () => {
-    const { data, error, isLoading } = useGetProductsQuery({ search: "extream" });
-
+    const { data, error, isLoading } = useGetAllProductQuery({ limit: 4 });
+    console.log(data)
+    if (isLoading) {
+        return <h3 className="font-bold text-lg text-center">Loading...</h3>
+    }
     return (
         <section className='py-10 md:py-20  px-2 md:px-0 bg-white'>
             <div className="container mx-auto">
