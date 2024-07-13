@@ -2,8 +2,6 @@ import { Form, Input, InputNumber } from 'antd'
 
 
 
-
-
 const InputItems = ({ type, names, label, errorMessage, style, ...rest }: { rest?: any, type: string; names: string; label: string; errorMessage: string, style?: any }) => {
     const InputComponent: any = {
         names: Input,

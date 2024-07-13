@@ -3,11 +3,13 @@ import { Layout, Menu } from 'antd';
 import { Link, Outlet } from 'react-router-dom';
 const { Header, Content } = Layout;
 import "./navbar.css"
-import { Navbar } from './Navbar';
 
-const Navbaritems = ["home", "products", "cart", "product-manage"]
+const Navbaritems = ["home", "products", "cart", "about us", "product-manage"]
 
 const finalNavItems = Navbaritems.map((items) => {
+    if (items === "about us") {
+        items = "about-us"
+    }
     return {
         key: items,
         label: <Link to={`${items === "home" ? "/" : items}`}>{items}</Link>

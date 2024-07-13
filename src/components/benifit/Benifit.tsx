@@ -7,7 +7,7 @@ import { FaCheckDouble } from "react-icons/fa6";
 
 const Benifit = () => {
     return (
-        <section className='bg-secondary py-8 md:py-16  px-2 md:-0'>
+        <section className='bg-secondary py-8 md:py-20  px-2 md:-0'>
             <div className="container mx-auto">
                 <h1 className="font-bold text-center text-lg sm:text-2xl">Secure Online Shopping</h1>
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-5 md:gap-7 mt-10'>

@@ -6,6 +6,7 @@ import Home from "../pages/home/Home";
 import ProductManagement from "../pages/porductManagment/ProductManagement";
 import AddProduct from "../pages/porductManagment/addProduct.tsx/AddProduct";
 import AllProducts from "../pages/porductManagment/AllProducts/AllProducts";
+import About from "../pages/aboutUs/About";
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
                 element: <Products />
             },
             {
+                path: "/about-us",
+                element: <About />
+            },
+            {
                 path: "/cart",
                 element: <Cart />
             }
@@ -35,6 +40,10 @@ const router = createBrowserRouter([
                 path: "/product-manage",
                 element: <ProductManagement />,
                 children: [
+                    {
+                        path: "/product-manage",
+                        element: <AllProducts />
+                    },
                     {
                         path: "add-product",
                         element: <AddProduct></AddProduct>

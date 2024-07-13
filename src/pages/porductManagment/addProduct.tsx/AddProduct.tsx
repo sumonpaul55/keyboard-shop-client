@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Col, Form, InputNumber, message, Row, Upload } from 'antd';
+import { Button, Col, Flex, Form, message, Rate, Row, Upload } from 'antd';
 import type { FormProps, GetProp, UploadFile, UploadProps } from 'antd';
 import { toast } from 'sonner';
 import InputItems from '../../../components/formInput/InputItems';
@@ -9,22 +9,18 @@ import { useCreateProductMutation } from '../../../redux/features/products/produ
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const AddProduct: React.FC = () => {
+    const [rating, setRateing] = useState(4);
     const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
-    // const [imageUrl, setImageUrl] = useState("")
+    const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
     const props: UploadProps = {
-        // onRemove: (file) => {
-        //     const index = fileList.indexOf(file);
-        //     const newFileList = fileList.slice();
-        //     newFileList.splice(index, 1);
-        //     setFileList(newFileList);
-        // },
         beforeUpload: (file) => {
             setFileList([...fileList, file]);
             return false;
         },
         fileList,
     };
+
 
     const onFinish: FormProps['onFinish'] = (values) => {
         toast.loading("Product Uploading", { id: "productImg" })
@@ -93,14 +89,28 @@ const AddProduct: React.FC = () => {
 
                     <InputItems type="textarea" names="description" label="Description" errorMessage="Bio is required" />
 
-                    <Form.Item
+                    {/* <Form.Item
                         label="Rating"
                         name="rating"
                         rules={[{ required: true, message: "rating required max 5" }]}
                     >
                         <InputNumber type='number' max={5} />
 
-                    </Form.Item>
+                    </Form.Item> */}
+                    <Row style={{ marginBottom: "20px" }}>
+                        <Col span={8} className='text-end pr-2'>
+                            <label htmlFor="">Rating </label>
+                        </Col>
+                        <Col span={16}>
+                            <Flex gap="middle" vertical>
+                                <Rate tooltips={desc} onChange={setRateing} value={rating} style={{ color: '#F4D100' }} />
+                                {rating ? <span>{desc[rating - 1]}</span> : null}
+                            </Flex>
+                        </Col>
+                    </Row>
+
+
+
 
                     <Col span="8" style={{ margin: "auto", marginTop: "50px" }}>
                         <Button style={{ margin: "auto", width: "100%" }} type="primary" htmlType="submit">Submit</Button>

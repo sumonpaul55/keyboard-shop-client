@@ -1,8 +1,11 @@
-import React from 'react'
 
 const Products = () => {
     return (
-        <div>Products</div>
+        <section>
+            <div className="container mx-auto">
+                <h2 className=''>Our Featured Products</h2>
+            </div>
+        </section>
     )
 }
 

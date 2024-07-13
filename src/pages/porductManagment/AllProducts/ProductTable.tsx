@@ -33,7 +33,7 @@ const ProductTAble: React.FC = () => {
         {
             title: 'Name',
             dataIndex: 'name',
-            render: (text: string) => <a>{text}</a>,
+            render: (text: string) => <a className='font-bold'>{text}</a>,
         },
         {
             title: 'Image',
@@ -45,14 +45,17 @@ const ProductTAble: React.FC = () => {
         {
             title: 'Brand',
             dataIndex: 'brand',
+            render: (p) => <h4 className='font-bold'>{p}</h4>
         },
         {
             title: 'Quantity',
             dataIndex: 'quantity',
+            render: (p) => <h4 className='font-bold'>{p}</h4>
         },
         {
             title: 'Price',
             dataIndex: 'price',
+            render: (p) => <h4 className='font-bold text-lg'>৳ {p}</h4>
         },
 
     ];
@@ -63,7 +66,7 @@ const ProductTAble: React.FC = () => {
 
     return (
         <div>
-            <h1>All Products</h1>
+            <h1 className='font-bold text-lg'>All Products</h1>
             <Divider />
 
             <Table

@@ -15,7 +15,7 @@ const ProductManagement: React.FC = () => {
                 <Link onClick={() => setSidebarOpen(!sideBarOpen)} className='sm:text-lg font-medium bg-slate-500 bg-opacity-50 p-2 rounded' to="/product-manage/products">All Product</Link>
                 <Link onClick={() => setSidebarOpen(!sideBarOpen)} className='sm:text-lg font-medium bg-slate-500 bg-opacity-50 p-2 rounded' to="/product-manage/add-product">Add Product</Link>
             </div>
-            <div className='flex-1 p-3 md:p-10'>
+            <div className='flex-1 p-3 md:p-10 h-screen overflow-y-auto'>
                 <Outlet></Outlet>
             </div>
         </div>
