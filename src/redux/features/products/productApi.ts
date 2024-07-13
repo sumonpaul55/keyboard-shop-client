@@ -4,7 +4,6 @@ export const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createProduct: builder.mutation({
       query: (data) => {
-        // console.log(data);
         return {
           url: "/products",
           method: "POST",
@@ -19,7 +18,27 @@ export const productApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getProducts: builder.query({
+      query: ({ search, category, limit }: { search?: string; category?: string; limit?: number }) => {
+        const params = new URLSearchParams();
+
+        if (category) {
+          params.append("category", category);
+        }
+        if (limit) {
+          params.append("limit", limit.toString());
+        }
+        if (search) {
+          params.append("search", search);
+        }
+
+        return {
+          url: "/products",
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery } = productApi;
+export const { useCreateProductMutation, useGetAllProductQuery, useGetProductsQuery } = productApi;

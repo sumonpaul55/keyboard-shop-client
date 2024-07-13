@@ -21,7 +21,7 @@ const ProductTAble: React.FC = () => {
 
     const transformedProducts = products?.data.map((product: any, index: number) => ({
         ...product,
-        key: product.id,  // Assuming 'id' is the unique identifier
+        key: product._id,  // Assuming 'id' is the unique identifier
         no: index + 1
     }));
 
@@ -55,7 +55,7 @@ const ProductTAble: React.FC = () => {
         {
             title: 'Price',
             dataIndex: 'price',
-            render: (p) => <h4 className='font-bold text-lg'>৳ {p}</h4>
+            render: (p) => <h4 className='font-bold'>৳ {p}</h4>
         },
 
     ];

@@ -1,7 +1,8 @@
 import { Button } from "antd";
 import keyVideo from "../../assets/videos/keyboard.mp4";
 import Benifit from "../../components/benifit/Benifit";
-import FeaturedProduct from "../../components/FeaturedProduct/FeaturedProduct";
+import FeaturedProductsSection from "./FeaturedProductsSection";
+
 
 const Home = () => {
     return (
@@ -30,7 +31,8 @@ const Home = () => {
                 </div>
             </section>
             <Benifit />
-            <FeaturedProduct />
+            <FeaturedProductsSection />
+
         </main>
     );
 };
