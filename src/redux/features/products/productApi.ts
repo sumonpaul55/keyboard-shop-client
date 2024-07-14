@@ -14,20 +14,21 @@ export const productApi = baseApi.injectEndpoints({
     // get all products
     getAllProduct: builder.query({
       query: ({ search, category, limit }: { search?: string; category?: string; limit?: number }) => {
-        const params = new URLSearchParams();
+        const query = new URLSearchParams();
+
         if (category) {
-          params.append("category", category);
+          query.append("category", category);
         }
         if (limit) {
-          params.append("limit", limit.toString());
+          query.append("limit", limit.toString());
         }
         if (search) {
-          params.append("search", search);
+          query.append("search", search);
         }
-
         return {
           url: "/products",
           method: "GET",
+          params: query,
         };
       },
     }),

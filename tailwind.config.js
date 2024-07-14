@@ -10,7 +10,8 @@ export default {
         "primary": "#1677ff",
         "light-gray": 'rgb(230 234 250)',
         "secondary": "#000ff104",
-        "secondary-black": "#606060"
+        "secondary-black": "#606060",
+        "base-yellow": "#b2b300"
       }
     },
   },

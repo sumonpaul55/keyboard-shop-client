@@ -12,7 +12,7 @@ const AddProduct: React.FC = () => {
     const [rating, setRateing] = useState(4);
     const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
-    const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
+    const desc = ['bad', 'medium', 'normal', 'good', 'wonderful'];
     const props: UploadProps = {
         beforeUpload: (file) => {
             setFileList([...fileList, file]);
@@ -40,8 +40,8 @@ const AddProduct: React.FC = () => {
                     const productData = {
                         rating, description, name, price, quantity, brand, image: data?.data?.display_url
                     }
-                    const res = await createProduct(productData)
-                    console.log(res)
+                    await createProduct(productData)
+
                     toast.success('Product Added Successfully', { id: "productImg" })
                 } else {
                     toast.error("Something went wrong Product Image not Uploading", { id: "productImg" })
