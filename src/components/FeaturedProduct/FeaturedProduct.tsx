@@ -29,11 +29,11 @@ const FeaturedProduct = (product: TProduct) => {
                 <h4 className="font-semibold mt-1 text-slate-700">Quantity: {product.quantity}</h4>
                 <Button style={{ width: "100%" }} className="mt-4 bg-base-yellow text-white">View Details</Button>
                 {/* favourite and add to cart button */}
-                <div className="absolute bottom-full -left-full w-1/2 group-hover:-left-0 duration-200">
+                <div className="absolute bottom-full -left-full w-1/2 group-hover:-left-0 duration-500">
                     <Button style={{ width: "100%" }} className="bg-base-yellow text-white rounded-none"><FaHeart />
                         Add To Favourite</Button>
                 </div>
-                <div className="absolute bottom-full -right-full w-1/2 group-hover:right-0 duration-200">
+                <div className="absolute bottom-full -right-full w-1/2 group-hover:right-0 duration-500">
                     <Button style={{ width: "100%" }} className="bg-base-yellow text-white rounded-none">Add To Cart <FaCartArrowDown /></Button>
                 </div>
             </div>
@@ -41,7 +41,6 @@ const FeaturedProduct = (product: TProduct) => {
                 {/* <Rate defaultValue={product.rating} allowClear={false} /> */}
                 <div className="p-2 text-white left-2 bg-primary bg-opacity-80 backdrop:blur-lg rounded flex items-center gap-4">
                     <h4 className="font-bold">Rating:</h4>
-                    {/* <span className="font-bold">{product?.rating}</span> */}
                     <Rate defaultValue={product.rating} allowClear={false} />
                 </div>
             </div>

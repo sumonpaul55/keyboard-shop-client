@@ -29,6 +29,7 @@ const AddProduct: React.FC = () => {
         fileList.forEach((file) => {
             formData.append('image', file as FileType);
         });
+
         fetch('https://api.imgbb.com/1/upload?key=9886ac79a2243ffd44ce467dd58abf5a', {
             body: formData,
             method: 'POST',
@@ -89,14 +90,6 @@ const AddProduct: React.FC = () => {
 
                     <InputItems type="textarea" names="description" label="Description" errorMessage="Bio is required" />
 
-                    {/* <Form.Item
-                        label="Rating"
-                        name="rating"
-                        rules={[{ required: true, message: "rating required max 5" }]}
-                    >
-                        <InputNumber type='number' max={5} />
-
-                    </Form.Item> */}
                     <Row style={{ marginBottom: "20px" }}>
                         <Col span={8} className='text-end pr-2'>
                             <label htmlFor="">Rating </label>

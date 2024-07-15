@@ -2,6 +2,7 @@ import { Button } from "antd";
 import keyVideo from "../../assets/videos/keyboard.mp4";
 import Benifit from "../../components/benifit/Benifit";
 import FeaturedProductsSection from "./FeaturedProductsSection";
+import Testimonial from "./Testimonial";
 
 
 const Home = () => {
@@ -32,7 +33,7 @@ const Home = () => {
             </section>
             <Benifit />
             <FeaturedProductsSection />
-
+            <Testimonial />
         </main>
     );
 };

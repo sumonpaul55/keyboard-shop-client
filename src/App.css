@@ -5,3 +5,7 @@
 * {
   font-family: "Roboto", sans-serif;
 }
+
+.react-multi-carousel-track{
+padding: 30px 0 !important;
+}
