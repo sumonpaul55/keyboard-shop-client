@@ -2,9 +2,18 @@ import Section from "../../layouts/Section"
 
 
 const Loading = () => {
-    return (<Section>
-        <h3 className="font-bold text-lg text-center">Loading...</h3></Section>
+    return (
+        <Section>
+            <div className="font-bold text-lg text-center flex items-center justify-center">
+                Loading...
+                <AnimateSpin />
+            </div>
+        </Section>
     )
 }
 
 export default Loading
+
+export const AnimateSpin = () => {
+    return <div className="size-4 border-dashed border-4 border-primary rounded-full animate-spin"></div>
+}

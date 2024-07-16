@@ -15,7 +15,7 @@ const FeaturedProductsSection = () => {
         return <h3 className="font-bold text-xl text-center">No Data Found</h3>
     }
     return (
-        <Section>
+        <Section className="md:py-32">
             <div className="container mx-auto">
                 <h2 className="font-bold text-lg md:text-xl lg:text-2xl text-primary text-center md:text-left">Our Featured Products</h2>
                 {/* display products */}

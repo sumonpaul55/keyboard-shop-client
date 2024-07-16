@@ -3,7 +3,7 @@ import { Rate } from "antd"
 
 const TestimonialItem = (items: any) => {
     const { name, star, title, review, image, designation } = items.items
-    return <div className="mx-3 border p-4 rounded-md shadow-lg cursor-grab">
+    return <div className="mx-3 border p-4 rounded-md shadow-lg cursor-grab bg-secondary">
         <div className="flex items-center gap-x-5 mb-2 border-b pb-3">
             <img src={image} alt={name} className="size-16 rounded-full" />
             <div className="">

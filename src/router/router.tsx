@@ -5,8 +5,9 @@ import Home from "../pages/home/Home";
 import ProductManagement from "../pages/porductManagment/ProductManagement";
 import AddProduct from "../pages/porductManagment/addProduct.tsx/AddProduct";
 import AllProducts from "../pages/porductManagment/AllProducts/AllProducts";
-import About from "../pages/aboutUs/About";
-import FeaturedProduct from "../components/FeaturedProduct/FeaturedProduct";
+import About from "../pages/aboutUs/About"
+import ProductPage from "../pages/productPage/ProductPage";
+import ProductDetails from "../pages/ProductDetail/ProductDetails";
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/products",
-                element: <FeaturedProduct />
+                element: <ProductPage />
+            },
+            {
+                path: "/product-details/:id",
+                element: <ProductDetails />
             },
             {
                 path: "/about-us",

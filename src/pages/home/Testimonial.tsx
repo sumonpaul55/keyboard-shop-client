@@ -40,7 +40,7 @@ const Testimonial = () => {
     return (
         <Section className='bg-white'>
             <div className='py-10'>
-                <h1 className='sm:text-md md:text-xl font-bold font-inter lg:text-2xl'>What Say Our Client's</h1>
+                <h1 className='sm:text-md md:text-xl font-bold font-inter lg:text-2xl'>What Say Our Client About Us!</h1>
                 <Carousel responsive={responsive} autoPlay={true} draggable={true} swipeable={true} showDots={true} infinite={true} autoPlaySpeed={3000}>
                     {
                         Data?.testimonialData?.map((items, idx) => <div key={idx}>

@@ -3,6 +3,7 @@ import keyVideo from "../../assets/videos/keyboard.mp4";
 import Benifit from "../../components/benifit/Benifit";
 import FeaturedProductsSection from "./FeaturedProductsSection";
 import Testimonial from "./Testimonial";
+import FeaturedBrand from "./FeaturedBrand";
 
 
 const Home = () => {
@@ -33,6 +34,7 @@ const Home = () => {
             </section>
             <Benifit />
             <FeaturedProductsSection />
+            <FeaturedBrand />
             <Testimonial />
         </main>
     );

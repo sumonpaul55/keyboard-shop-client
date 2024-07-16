@@ -13,18 +13,24 @@ export const productApi = baseApi.injectEndpoints({
     }),
     // get all products
     getAllProduct: builder.query({
-      query: ({ search, category, limit }: { search?: string; category?: string; limit?: number }) => {
+      query: (params) => {
         const query = new URLSearchParams();
+        if (params?.limit) {
+          query.append("limit", params?.limit);
+        }
+        if (params?.search) {
+          query.append("search", params?.search);
+        }
+        if (params?.page) {
+          query.append("page", params?.page);
+        }
+        if (params?.page) {
+          query.append("page", params?.page);
+        }
+        if (params?.fields) {
+          query.append("fields", params?.fields);
+        }
 
-        if (category) {
-          query.append("category", category);
-        }
-        if (limit) {
-          query.append("limit", limit.toString());
-        }
-        if (search) {
-          query.append("search", search);
-        }
         return {
           url: "/products",
           method: "GET",
