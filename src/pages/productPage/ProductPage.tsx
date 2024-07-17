@@ -3,19 +3,28 @@ import { useGetAllProductQuery } from '../../redux/features/products/productApi'
 import Loading from '../commonPage/Loading'
 import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
 import { Input } from 'antd'
+import { useGetBrand } from '../../useHooks/useGetBrand'
 
 const ProductPage = () => {
     const [search, setSearch] = useState<any | undefined>(undefined)
     const [limit] = useState(10)
     const [page] = useState(undefined)
-    const [brand, setBrand] = useState(null)
 
-    const { data, isLoading } = useGetAllProductQuery({ search, limit, page, fields: brand })
+
+    const { data, isLoading } = useGetAllProductQuery({ search, limit, page })
+    // brnads woriking on
+    const brands = useGetBrand("brand")
     if (isLoading) {
         return <Loading />
     }
-    return (
+    const onlyBrands: string[] = []
+    brands?.forEach((items: any) => {
+        onlyBrands.push(items.brand)
+    })
+    const uniqBrnd = new Set(onlyBrands)
+    const brandsArray = Array.from(uniqBrnd);
 
+    return (
         <main className='p-2'>
             <section>
                 <div className="container mx-auto">
@@ -24,7 +33,11 @@ const ProductPage = () => {
                         <div className='md:w-[300px] bg-light-gray relative h-screen z-10 '>
                             <div className='p-4'>
                                 <h2 className='md:text-lg font-bold'>Pick Your Required Brand</h2>
-                                <div></div>
+                                <div className='flex flex-col gap-2 px-4 md:px-5 mt-5 font-bold md:text-'>
+                                    {
+                                        brandsArray?.map((items, idx) => (<h4 key={idx} className='border hover:bg-slate-300 cursor-pointer capitalize border-white rounded-lg p-2'>{items}</h4>))
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div className='flex-1 h-screen overflow-y-auto'>

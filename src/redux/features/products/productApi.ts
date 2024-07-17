@@ -30,9 +30,21 @@ export const productApi = baseApi.injectEndpoints({
         if (params?.fields) {
           query.append("fields", params?.fields);
         }
-
         return {
           url: "/products",
+          method: "GET",
+          params: query,
+        };
+      },
+    }),
+    getProductField: builder.query({
+      query: (params) => {
+        let query = new URLSearchParams();
+        if (params.fields) {
+          query.append("fields", params.fields);
+        }
+        return {
+          url: "products",
           method: "GET",
           params: query,
         };
@@ -41,4 +53,4 @@ export const productApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery } = productApi;
+export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery } = productApi;
