@@ -61,7 +61,6 @@ const FeaturedProduct = (product: TProduct) => {
                     <Rate defaultValue={product.rating} allowClear={false} />
                 </div>
             </div>
-
         </div>
     )
 }

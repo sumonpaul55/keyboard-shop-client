@@ -14,6 +14,7 @@ export const productApi = baseApi.injectEndpoints({
     // get all products
     getAllProduct: builder.query({
       query: (params) => {
+        console.log(params);
         const query = new URLSearchParams();
         if (params?.limit) {
           query.append("limit", params?.limit);
@@ -24,11 +25,8 @@ export const productApi = baseApi.injectEndpoints({
         if (params?.page) {
           query.append("page", params?.page);
         }
-        if (params?.page) {
-          query.append("page", params?.page);
-        }
-        if (params?.fields) {
-          query.append("fields", params?.fields);
+        if (params?.brand) {
+          query.append("brand", params?.brand);
         }
         return {
           url: "/products",
@@ -37,6 +35,7 @@ export const productApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     getProductField: builder.query({
       query: (params) => {
         let query = new URLSearchParams();
@@ -44,13 +43,27 @@ export const productApi = baseApi.injectEndpoints({
           query.append("fields", params.fields);
         }
         return {
-          url: "products",
+          url: "/products",
           method: "GET",
           params: query,
+        };
+      },
+    }),
+
+    getProductById: builder.query({
+      query: (id) => {
+        const query = new URLSearchParams();
+        if (id) {
+          query.append("id", id);
+        }
+        return {
+          url: `/products/getOneProductById`,
+          method: "GET",
+          params: id,
         };
       },
     }),
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery } = productApi;
+export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery } = productApi;

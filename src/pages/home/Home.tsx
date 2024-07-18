@@ -4,6 +4,7 @@ import Benifit from "../../components/benifit/Benifit";
 import FeaturedProductsSection from "./FeaturedProductsSection";
 import Testimonial from "./Testimonial";
 import FeaturedBrand from "./FeaturedBrand";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -25,7 +26,7 @@ const Home = () => {
                                 tailored to meet your needs.
                             </p>
                             <div className="flex gap-6 mt-10 justify-center">
-                                <Button className="px-5 md:px-10 py-4 bg-primary border-primary text-white md:text-lg">View All</Button>
+                                <Link to="/products"><Button className="px-5 md:px-10 py-4 bg-primary border-primary text-white md:text-lg">View All</Button></Link>
                                 <Button className="px-5 md:px-10 py-4 bg-primary border-primary text-white md:text-lg">Explore</Button>
                             </div>
                         </div>
