@@ -14,7 +14,6 @@ export const productApi = baseApi.injectEndpoints({
     // get all products
     getAllProduct: builder.query({
       query: (params) => {
-        console.log(params);
         const query = new URLSearchParams();
         if (params?.limit) {
           query.append("limit", params?.limit);

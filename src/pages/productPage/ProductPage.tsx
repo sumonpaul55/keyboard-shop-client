@@ -11,8 +11,9 @@ const ProductPage = () => {
     const [limit] = useState(10);
     // const [barnd, setBrand] = useState([])
     const [range, setRange] = useState<string | undefined>()
-    let brand = [];
-    const { data, isLoading } = useGetAllProductQuery({ search, limit, range })
+    const [brand, setBrand] = useState<string | undefined>()
+
+    const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand })
 
     // brnads woriking on
     const brands = useGetBrand("brand")
@@ -25,9 +26,6 @@ const ProductPage = () => {
     })
     const uniqBrnd = new Set(onlyBrands)
     const brandsArray = Array.from(uniqBrnd);
-
-
-
 
     const priceRange = [
         "0-300",
@@ -45,7 +43,7 @@ const ProductPage = () => {
                                 <h2 className='text-sm md:text-lg font-bold'>Pick Your Required Brand</h2>
                                 <div className='flex flex-col gap-2 px-4 md:px-5 mt-5 font-bold md:text-'>
                                     {
-                                        brandsArray?.map((items, idx) => (<Checkbox key={idx} onChange={() => brand.push(items)}>{items}</Checkbox>))
+                                        brandsArray?.map((items, idx) => (<Checkbox key={idx} onChange={() => setBrand(`${items}`)}>{items}</Checkbox>))
                                     }
                                 </div>
                             </div>

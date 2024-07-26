@@ -6,27 +6,27 @@ export const NavBar = () => {
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef<HTMLDivElement | undefined | any>();
     const navBarItems = [
-        <li className="">
+        <li className="" key="1">
             <Link to="/" className='group flex cursor-pointer flex-col'>
                 Home<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
         </li>,
-        <li className="">
+        <li className="" key="2">
             <Link to="/products" className='group flex cursor-pointer flex-col'>
                 Products<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
         </li>,
-        <li className="">
+        <li className="" key="3">
             <Link to="/about-us" className='group flex cursor-pointer flex-col'>
                 About Us<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
         </li>,
-        <li className="">
+        <li className="" key="4">
             <Link to="/contact-us" className='group flex cursor-pointer flex-col'>
-                Home<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+                Contact Us<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
         </li>,
-        <li className="relative">
+        <li className="relative" key={5}>
             <Link to="/" className='group flex cursor-pointer flex-col'>
                 <FaCartPlus size={25} color='' /><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
@@ -50,7 +50,7 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <section className='bg-primary px-4 py-2 sticky top-0 z-[5000]'>
+        <section className='bg-primary px-4 py-2 sticky top-0 z-[5000] shadow-lg'>
             <div className="container mx-auto">
                 <nav className="flex w-full items-center justify-between text-white">
                     <div className="cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">

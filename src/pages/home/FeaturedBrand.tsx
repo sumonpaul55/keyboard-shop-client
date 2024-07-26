@@ -4,7 +4,10 @@ import Loading from "../commonPage/Loading"
 
 const FeaturedBrand = () => {
 
-    const { data, isLoading } = useGetAllProductQuery({ search: "extream", limit: 1 })
+    const { data, isLoading } = useGetAllProductQuery({ brand: ["logitech", "extream"] })
+
+    console.log(data?.data)
+
 
     if (isLoading) {
         return <Loading />
@@ -14,7 +17,6 @@ const FeaturedBrand = () => {
             <h1 className='sm:text-md md:text-xl font-bold font-inter lg:text-2xl'>Our Featured Brand</h1>
 
             <div className="text-white">
-
                 {data?.data.length}
             </div>
         </Section>

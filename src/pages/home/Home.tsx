@@ -5,6 +5,7 @@ import FeaturedProductsSection from "./FeaturedProductsSection";
 import Testimonial from "./Testimonial";
 import FeaturedBrand from "./FeaturedBrand";
 import { Link } from "react-router-dom";
+import Faq from "../faqPage/Faq";
 
 
 const Home = () => {
@@ -37,6 +38,7 @@ const Home = () => {
             <FeaturedProductsSection />
             <FeaturedBrand />
             <Testimonial />
+            <Faq />
         </main>
     );
 };
