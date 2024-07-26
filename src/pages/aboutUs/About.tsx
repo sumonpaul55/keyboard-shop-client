@@ -1,7 +1,10 @@
+import Section from "../../layouts/Section"
 
 const About = () => {
     return (
-        <div>About</div>
+        <Section className="min-h-screen">
+            <div>about us</div>
+        </Section>
     )
 }
 

@@ -21,7 +21,7 @@ const FeaturedBrand = () => {
         },
         {
             name: "Razer",
-            image: "https://i.ibb.co/n8p8DH3/lighting-keyboard.jpg"
+            image: "https://image.isu.pub/231218164830-d917894eb1b3d333d6debe63f3e81bd9/jpg/page_1_thumb_large.jpg"
         }
     ]
 

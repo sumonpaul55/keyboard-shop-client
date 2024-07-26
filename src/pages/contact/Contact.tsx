@@ -6,9 +6,9 @@ import { FaFacebook, FaGlobe, FaInstagram, FaLinkedin, FaYoutube } from "react-i
 const Contact = () => {
     return (
         <section className="py-10">
-            <h1 className="text-xl font-bold mb-2 text-center md:mb-5">Contact Us</h1>
+            <h1 className="text-lg md:text-2xl font-bold mb-2 text-center md:mb-5">Contact Us</h1>
             <div className="container mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     <div className="border p-2 md:p-4 rounded-md contact-form bg-slate-100 shadow">
                         <Form className="">
                             <Space className="w-full">
@@ -45,12 +45,10 @@ const Contact = () => {
                     </div>
                     <div className="border p-3 rounded-md">
                         <h2 className="font-bold text-left">Our Phychical Location</h2>
-                        <iframe src="https://map.google.com" style={{ width: "100%", height: "300px", borderRadius: "10px", marginTop: "10px" }}>
-                            <source src="https://map.google.com" />
-                        </iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57973.89340623162!2d90.3551197313414!3d24.748557067887447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37564f1007ad9b59%3A0x79a59cb060e32d6c!2sMymensingh!5e0!3m2!1sen!2sbd!4v1722019919537!5m2!1sen!2sbd" width="600" height="450" allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
-                <div className="py-3 bg-slate-600 px-2 mt-10 md:py-6 rounded-lg text-white">
+                <div className="py-3 bg-slate-600 px-2 mt-10 md:py-6 rounded-lg text-white my-20">
                     <div className="flex gap-5 md:10 flex-wrap items-center justify-between md:px-5">
                         <h3 className="text-lg md:text-xl xl:text-2xl">Our Social Media :</h3>
                         <ul className="flex gap-4 md:gap-8">

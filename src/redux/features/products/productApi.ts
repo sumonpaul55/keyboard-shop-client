@@ -62,7 +62,17 @@ export const productApi = baseApi.injectEndpoints({
         };
       },
     }),
+    // add to cart api
+    addToCart: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/cart",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery } = productApi;
+export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery, useAddToCartMutation } = productApi;

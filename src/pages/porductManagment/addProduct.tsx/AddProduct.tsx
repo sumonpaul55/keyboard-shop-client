@@ -13,6 +13,7 @@ const AddProduct: React.FC = () => {
     const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const desc = ['bad', 'medium', 'normal', 'good', 'wonderful'];
+
     const props: UploadProps = {
         beforeUpload: (file) => {
             setFileList([...fileList, file]);

@@ -6,5 +6,7 @@ export const useGetBrand = (fields: string) => {
     if (isLoading) {
         return <Loading />
     }
-    return data?.data
+    return {
+        brandLoading: isLoading, brands: data?.data
+    }
 } 

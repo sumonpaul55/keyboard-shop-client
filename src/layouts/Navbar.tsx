@@ -30,7 +30,7 @@ export const NavBar = () => {
             <Link to="/" className='group flex cursor-pointer flex-col'>
                 <FaCartPlus size={25} color='' /><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <span className='absolute -top-3 text-sm bg-red-500 size-5 text-center rounded-full -right-4'>2</span>
+            <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white'>2</span>
         </li>,
 
 
@@ -50,18 +50,17 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <section className='bg-primary px-4 py-2 sticky top-0 z-[5000] shadow-lg'>
+        <section className='px-4 pt-2 pb-1 sticky top-0 z-[9999] bg-white shadow-lg'>
             <div className="container mx-auto">
-                <nav className="flex w-full items-center justify-between text-white">
-                    <div className="cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">
-                        <h2>Logo</h2>
+                <nav className="flex w-full items-center justify-between">
+                    <div className="cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
+                        <Link to={"/"}> <h2 className='font-bolder'>Key<span className='text-primary'>H</span>ub</h2></Link>
                     </div>
                     <ul className="hidden items-center justify-between gap-10 md:flex">
-
                         {navBarItems}
                     </ul>
                     <div ref={dropDownMenuRef} onClick={() => setDropDownState(!dropDownState)} className="relative flex transition-transform md:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="cursor-pointer">
                             <line x1="4" x2="20" y1="12" y2="12" />
                             <line x1="4" x2="20" y1="6" y2="6" />
                             <line x1="4" x2="20" y1="18" y2="18" />

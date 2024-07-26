@@ -1,12 +1,11 @@
-import React from 'react'
+
+import FeaturedProduct from '../../components/FeaturedProduct/FeaturedProduct'
 import { useGetAllProductQuery } from '../../redux/features/products/productApi'
 
-const SimilarBrand = (brand: string) => {
-    const { data } = useGetAllProductQuery({ search: brand })
+const SimilarBrand = (brand: any) => {
+    const { data } = useGetAllProductQuery(brand)
     return (
-        <div>
-            {data?.data.length}
-        </div>
+        <FeaturedProduct {...data} />
     )
 }
 
