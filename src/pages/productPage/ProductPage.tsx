@@ -2,21 +2,19 @@ import { useState } from 'react'
 import { useGetAllProductQuery } from '../../redux/features/products/productApi'
 import Loading from '../commonPage/Loading'
 import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
-import { Button, Checkbox, Input } from 'antd'
+import { Button, Input, Select, SelectProps } from 'antd'
 import { useGetBrand } from '../../useHooks/useGetBrand'
 import { Link } from 'react-router-dom'
 
 const ProductPage = () => {
+    const brands = useGetBrand("brand")
     const [search, setSearch] = useState<any | undefined>(undefined)
     const [limit] = useState(10);
-    // const [barnd, setBrand] = useState([])
+    const [brand, setBrand] = useState({})
     const [range, setRange] = useState<string | undefined>()
-    const [brand, setBrand] = useState<string | undefined>()
 
     const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand })
-
     // brnads woriking on
-    const brands = useGetBrand("brand")
     if (isLoading) {
         return <Loading />
     }
@@ -27,11 +25,19 @@ const ProductPage = () => {
     const uniqBrnd = new Set(onlyBrands)
     const brandsArray = Array.from(uniqBrnd);
 
+
     const priceRange = [
         "0-300",
         "300-800",
         "800-1000"
     ]
+
+    const options: SelectProps["options"] = [];
+    brandsArray.map((bname) => {
+        return options.push({ value: bname, label: bname })
+    })
+
+
     return (
         <main className='p-0 md:p-2'>
             <section>
@@ -42,9 +48,11 @@ const ProductPage = () => {
                             <div className='md:p-4'>
                                 <h2 className='text-sm md:text-lg font-bold'>Pick Your Required Brand</h2>
                                 <div className='flex flex-col gap-2 px-4 md:px-5 mt-5 font-bold md:text-'>
-                                    {
-                                        brandsArray?.map((items, idx) => (<Checkbox key={idx} onChange={() => setBrand(`${items}`)}>{items}</Checkbox>))
-                                    }
+                                    <Select
+                                        onChange={(value) => setBrand(`${value}`)}
+                                        options={options}
+                                        mode='multiple'
+                                    />
                                 </div>
                             </div>
                             <div className='md:p-4 mt-10'>

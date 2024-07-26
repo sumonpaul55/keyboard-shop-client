@@ -26,7 +26,7 @@ export const NavBar = () => {
                 Contact Us<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
         </li>,
-        <li className="relative" key={5}>
+        <li className="relative w-fit" key={5}>
             <Link to="/" className='group flex cursor-pointer flex-col'>
                 <FaCartPlus size={25} color='' /><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
@@ -67,7 +67,7 @@ export const NavBar = () => {
                             <line x1="4" x2="20" y1="18" y2="18" />
                         </svg>
                         {dropDownState && (
-                            <ul className="z-10 gap-2 bg-[#393E46] absolute right-0 top-11 flex w-[200px] flex-col rounded-lg text-base">
+                            <ul className="z-10 gap-2 p-5 md:p-0 space-y-3 md:space-y-0 bg-[#393E46] absolute right-0 top-11 flex w-[200px] flex-col rounded-lg text-base">
                                 {navBarItems}
                             </ul>
                         )}

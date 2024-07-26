@@ -14,8 +14,8 @@ const Faq: React.FC = () => {
                 <div className="p-4">
                     <Collapse accordion>
                         {faqData.map((item: FAQItem, index: number) => (
-                            <Panel header={item.question} key={index} style={{ fontSize: "17px" }}>
-                                <p className='p-2'>{item.answer}</p>
+                            <Panel header={item.question} key={index} style={{ fontSize: "17px", fontWeight: "500" }}>
+                                <p className='font-[400]'>{item.answer}</p>
                             </Panel>
                         ))}
                     </Collapse>

@@ -24,7 +24,7 @@ export const productApi = baseApi.injectEndpoints({
         if (params?.page) {
           query.append("page", params?.page);
         }
-        if (params?.brand) {
+        if (params?.brand && params?.brand.length > 0) {
           query.append("brand", params?.brand);
         }
         return {
