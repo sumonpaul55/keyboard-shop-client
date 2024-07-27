@@ -1,11 +1,19 @@
 
-import FeaturedProduct from '../../components/FeaturedProduct/FeaturedProduct'
+import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
 import { useGetAllProductQuery } from '../../redux/features/products/productApi'
 
 const SimilarBrand = (brand: any) => {
     const { data } = useGetAllProductQuery(brand)
     return (
-        <FeaturedProduct {...data} />
+        <div className='h-full'>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10'>
+                {
+                    data?.data.map((items: TProduct) => (
+                        <FeaturedProduct {...items} />
+                    ))
+                }
+            </div>
+        </div>
     )
 }
 

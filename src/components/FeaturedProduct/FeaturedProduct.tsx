@@ -52,9 +52,9 @@ const FeaturedProduct = (product: TProduct) => {
     }
     // console.log(product)
     return (
-        <div className="relative bg-secondary shadow rounded-md overflow-hidden group">
+        <div className="relative overflow-hidden group rounded-t-md bg-secondary rounded-md border">
             <img src={product?.image} className="w-full" alt={product.name} />
-            <div className="py-4 border border-t-0 p-3 md:p-4 rounded-b-md relative">
+            <div className="py-4 border-t-0 p-3 md:p-4 rounded-b-md relative">
                 <div className="flex items-center justify-between">
                     <h2 className={`font-semibold text-xs sm:text-base md:text-lg product-name`}>{product.name}</h2>
                     <h3 className="font-bold text-[#01254c] text-xs sm:text-base">Brand: {product?.brand}</h3>

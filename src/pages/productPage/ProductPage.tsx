@@ -41,6 +41,12 @@ const ProductPage = () => {
         return options.push({ value: bname, label: bname })
     })
 
+    // handle reset
+    const handleReset = () => {
+        setBrand({})
+        setSearch(undefined)
+        setRange(undefined)
+    }
 
     return (
         <main className='p-0 md:p-2'>
@@ -65,7 +71,14 @@ const ProductPage = () => {
                                     {
                                         priceRange?.map((items, idx) => (<Button onClick={() => setRange(items)} key={idx} className=''>{items}</Button>))
                                     }
+
                                 </div>
+
+                            </div>
+                            <div className='md:p-4 mx-5'>
+                                <Button style={{ width: "100%" }} className='bg-primary text-white' onClick={handleReset}>
+                                    Reset filter
+                                </Button>
                             </div>
                         </div>
                         <div className='flex-1 h-screen overflow-y-auto'>
@@ -75,13 +88,11 @@ const ProductPage = () => {
                                     <Input style={{ maxWidth: "100%", padding: '5px' }} placeholder='Search by name or brand' onChange={(e) => setSearch(e.target.value)} />
                                 </div>
                             </div>
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8'>
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8 p-2 ps-0'>
                                 {
                                     data?.data.length ?
                                         data?.data?.map((items: TProduct, idx: number) => (
-                                            <div key={idx}>
-                                                <FeaturedProduct {...items} />
-                                            </div>
+                                            <FeaturedProduct {...items} key={idx} />
                                         ))
                                         :
                                         <>

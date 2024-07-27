@@ -31,7 +31,7 @@ const ProductDetails = () => {
     }
     return (
         <main>
-            <Section className='h-screen'>
+            <Section className=''>
                 <div>
                     <h1 className='font-bold text-xl md:text-2xl lg:text-4xl mb-4 text-primary'>{items.name}</h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10'>
@@ -54,10 +54,11 @@ const ProductDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='border-t mt-10'>
-                        <h1 className='font-semibold md:text-lg mt-2'>Similar Brands</h1>
-                        <SimilarBrand brand={items?.brand} />
-                    </div>
+
+                </div>
+                <div className='border-t py-10'>
+                    <h1 className='font-semibold md:text-lg mt-2'>More {items.brand} Brands</h1>
+                    <SimilarBrand brand={items?.brand} />
                 </div>
             </Section>
         </main>
