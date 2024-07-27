@@ -1,3 +1,6 @@
 .contact-form .ant-space-item{
     flex:1;
 }
+.product-details .ant-image {
+    width: 100% !important;
+}

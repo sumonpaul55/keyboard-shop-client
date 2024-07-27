@@ -9,11 +9,10 @@ import { useCreateProductMutation } from '../../../redux/features/products/produ
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const AddProduct: React.FC = () => {
-    const [rating, setRateing] = useState(4);
+    const [rating, setRateing] = useState(1);
     const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const desc = ['bad', 'medium', 'normal', 'good', 'wonderful'];
-
     const props: UploadProps = {
         beforeUpload: (file) => {
             setFileList([...fileList, file]);
@@ -22,10 +21,9 @@ const AddProduct: React.FC = () => {
         fileList,
     };
 
-
     const onFinish: FormProps['onFinish'] = (values) => {
         toast.loading("Product Uploading", { id: "productImg" })
-        const { rating, description, name, price, quantity, brand }: any = values
+        const { description, name, price, quantity, brand }: any = values
         const formData = new FormData();
         fileList.forEach((file) => {
             formData.append('image', file as FileType);
@@ -43,7 +41,7 @@ const AddProduct: React.FC = () => {
                         rating, description, name, price, quantity, brand, image: data?.data?.display_url
                     }
                     await createProduct(productData)
-
+                    // console.log(res)
                     toast.success('Product Added Successfully', { id: "productImg" })
                 } else {
                     toast.error("Something went wrong Product Image not Uploading", { id: "productImg" })

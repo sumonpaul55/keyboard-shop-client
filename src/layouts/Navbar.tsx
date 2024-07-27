@@ -32,7 +32,11 @@ export const NavBar = () => {
             </Link>
             <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white'>2</span>
         </li>,
-
+        <li className="" key="6">
+            <Link to="/product-manage" className='group flex cursor-pointer flex-col'>
+                Product Manage<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+        </li>,
 
     ]
     useEffect(() => {

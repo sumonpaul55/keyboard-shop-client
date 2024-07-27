@@ -17,7 +17,7 @@ const FeaturedBrand = () => {
         },
         {
             name: "Corsiar",
-            image: "https://i.ibb.co/Z28Ykqf/corsiar.jpg"
+            image: "https://i.ibb.co/5WJZtvq/corsiar.jpg"
         },
         {
             name: "Razer",

@@ -50,7 +50,7 @@ const ProductPage = () => {
 
     return (
         <main className='p-0 md:p-2'>
-            <section>
+            <section className='py-5'>
                 <div className="container mx-auto">
                     <div className='flex gap-2 md:gap-10'>
                         {/* left */}

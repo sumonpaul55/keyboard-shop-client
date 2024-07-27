@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom"
 import Section from "../../layouts/Section"
 import { useAddToCartMutation, useGetAllProductQuery } from "../../redux/features/products/productApi";
-import Loading, { AnimateSpin } from "../commonPage/Loading";
+import Loading, { } from "../commonPage/Loading";
 import { TProduct } from "../../components/FeaturedProduct/FeaturedProduct";
 import { motion } from "framer-motion";
 import { Button } from "antd";
