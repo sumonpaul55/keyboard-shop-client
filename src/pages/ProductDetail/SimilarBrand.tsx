@@ -9,7 +9,9 @@ const SimilarBrand = (brand: any) => {
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10'>
                 {
                     data?.data.map((items: TProduct) => (
-                        <FeaturedProduct {...items} />
+                        <div className='rounded-md border overflow-hidden'>
+                            <FeaturedProduct {...items} />
+                        </div>
                     ))
                 }
             </div>

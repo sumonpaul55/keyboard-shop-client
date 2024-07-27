@@ -71,7 +71,6 @@ const ProductPage = () => {
                                     {
                                         priceRange?.map((items, idx) => (<Button onClick={() => setRange(items)} key={idx} className=''>{items}</Button>))
                                     }
-
                                 </div>
 
                             </div>
@@ -92,7 +91,9 @@ const ProductPage = () => {
                                 {
                                     data?.data.length ?
                                         data?.data?.map((items: TProduct, idx: number) => (
-                                            <FeaturedProduct {...items} key={idx} />
+                                            <div key={idx} className='overflow-hidden rounded-t-md bg-secondary rounded-md border'>
+                                                <FeaturedProduct {...items} />
+                                            </div>
                                         ))
                                         :
                                         <>

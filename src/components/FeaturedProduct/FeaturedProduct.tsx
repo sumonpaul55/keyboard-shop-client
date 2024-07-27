@@ -20,7 +20,6 @@ export type TProduct = {
 
 
 const FeaturedProduct = (product: TProduct) => {
-    const [view, setView] = useState(false)
 
     const [addCart] = useAddToCartMutation()
 
@@ -46,13 +45,10 @@ const FeaturedProduct = (product: TProduct) => {
         }
     }
 
-    // handle view details
-    const handleViewDetail = () => {
-        setView(true)
-    }
+
     // console.log(product)
     return (
-        <div className="relative overflow-hidden group rounded-t-md bg-secondary rounded-md border">
+        <div className="relative overflow-hidden group h-full flex flex-col justify-between">
             <img src={product?.image} className="w-full" alt={product.name} />
             <div className="py-4 border-t-0 p-3 md:p-4 rounded-b-md relative">
                 <div className="flex items-center justify-between">
@@ -65,10 +61,8 @@ const FeaturedProduct = (product: TProduct) => {
                 </div>
                 <h4 className="font-semibold mt-1 text-slate-700 text-xs sm:text-base">Quantity: {product.quantity}</h4>
                 <Link to={`/product-details/${product?._id}`}>
-                    <Button onClick={handleViewDetail} style={{ width: "100%" }} className="mt-4 bg-base-yellow text-white flex items-center gap-3">View Details
-                        {
-                            view ? <AnimateSpin /> : null
-                        }
+                    <Button style={{ width: "100%" }} className="mt-4 bg-base-yellow text-white flex items-center gap-3">View Details
+                        view
                     </Button>
                 </Link>
                 {/* favourite and add to cart button */}
@@ -87,7 +81,7 @@ const FeaturedProduct = (product: TProduct) => {
                     <Rate defaultValue={product.rating} allowClear={false} />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
