@@ -22,26 +22,27 @@ export type TProduct = {
 const FeaturedProduct = (product: TProduct) => {
     const [view, setView] = useState(false)
 
-    const [addCart, { error, isLoading }] = useAddToCartMutation()
+    const [addCart] = useAddToCartMutation()
 
     // handle add to cart
-    const handleAddtoCart = (productId: string) => {
+    const handleAddtoCart = async (productId: string) => {
         if (productId) {
             const cartProduct = {
                 productId: productId,
                 quantity: 1
             }
 
-            addCart(cartProduct)
-            if (!isLoading && !error) {
+            const res = await addCart(cartProduct)
+            if (res?.data) {
                 toast.success("This Product Added to Your Cart", {
                     duration: 4000
                 })
-            } else {
-                toast.error(error?.data?.message)
             }
-
-
+            else {
+                toast.error(res?.error?.data?.message!, {
+                    duration: 4000
+                })
+            }
         }
     }
 

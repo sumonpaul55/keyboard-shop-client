@@ -13,6 +13,7 @@ const ProductPage = () => {
     const [brand, setBrand] = useState({})
     const [range, setRange] = useState<string | undefined>()
 
+
     const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand })
     // brnads woriking on
     if (isLoading) {
