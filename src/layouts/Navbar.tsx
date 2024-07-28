@@ -27,7 +27,7 @@ export const NavBar = () => {
             </Link>
         </li>,
         <li className="relative w-fit" key={5}>
-            <Link to="/" className='group flex cursor-pointer flex-col'>
+            <Link to="/cart" className='group flex cursor-pointer flex-col'>
                 <FaCartPlus size={25} color='' /><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white'>2</span>

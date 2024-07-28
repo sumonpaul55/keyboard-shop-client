@@ -1,6 +1,7 @@
 // src/components/Footer.tsx
 import React from 'react';
 import { Layout, Typography, Row, Col } from 'antd';
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa6';
 
 const { Footer } = Layout;
 const { Text, Link } = Typography;
@@ -14,9 +15,9 @@ const FooterComponent: React.FC = () => {
                         <h3 className="text-xl font-bold mb-4">Quick Links</h3>
                         <ul>
                             <li><Link href="/" className="text-gray-400 hover:text-white">Home</Link></li>
-                            <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
+                            <li><Link href="/about-us" className="text-gray-400 hover:text-white">About Us</Link></li>
                             <li><Link href="/products" className="text-gray-400 hover:text-white">Products</Link></li>
-                            <li><Link href="/contact" className="text-gray-400 hover:text-white">Contact</Link></li>
+                            <li><Link href="/contact-us" className="text-gray-400 hover:text-white">Contact</Link></li>
                         </ul>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
@@ -30,9 +31,11 @@ const FooterComponent: React.FC = () => {
                     <Col xs={24} sm={12} md={6}>
                         <h3 className="text-xl font-bold mb-4">Follow Us</h3>
                         <ul>
-                            <li><Link href="https://facebook.com" className="text-gray-400 hover:text-white">Facebook</Link></li>
-                            <li><Link href="https://twitter.com" className="text-gray-400 hover:text-white">Twitter</Link></li>
-                            <li><Link href="https://instagram.com" className="text-gray-400 hover:text-white">Instagram</Link></li>
+                            <li><Link href="https://facebook.com" className="text-gray-400 hover:text-white flex items-center gap-2"><FaFacebook /> Facebook</Link></li>
+                            <li><Link href="https://facebook.com" className="text-gray-400 hover:text-white flex items-center gap-2"><FaTwitter />Twitter</Link></li>
+                            <li><Link href="https://facebook.com" className="text-gray-400 hover:text-white flex items-center gap-2"><FaInstagram />Instagram</Link></li>
+                            <li><Link href="https://facebook.com" className="text-gray-400 hover:text-white flex items-center gap-2"><FaYoutube />You tube</Link></li>
+
                         </ul>
                     </Col>
                     <Col xs={24} sm={12} md={6}>
