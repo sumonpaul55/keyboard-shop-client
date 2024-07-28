@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGetAllProductQuery } from '../../redux/features/products/productApi'
 import Loading from '../commonPage/Loading'
 import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
@@ -9,16 +9,17 @@ import { Link } from 'react-router-dom'
 const ProductPage = () => {
     const { brandLoading, brands }: any = useGetBrand("brand")
     const [search, setSearch] = useState<any | undefined>(undefined)
-    const [limit] = useState(10);
+    const [limit] = useState(12);
     const [brand, setBrand] = useState({})
     const [range, setRange] = useState<string | undefined>()
+    const [page, setPage] = useState(1);
 
-
-    const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand })
+    const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand, page: page })
     // brnads woriking on
     if (isLoading) {
         return <Loading />
     }
+
     const onlyBrands: string[] = []
     let brandsArray;
 
@@ -47,7 +48,11 @@ const ProductPage = () => {
         setSearch(undefined)
         setRange(undefined)
     }
-
+    // page number
+    const generatedPage = Math.ceil((data?.data.length / 12) + 1)
+    const handlePageClick = (pageNumber: any) => {
+        setPage(pageNumber + 1)
+    }
     return (
         <main className='p-0 md:p-2'>
             <section className='py-5'>
@@ -105,6 +110,20 @@ const ProductPage = () => {
                                             </div>
                                         </>
                                 }
+                            </div>
+                            <div className='pt-10 text-center flex items-center justify-center'>
+                                <Button onClick={() => setPage(page - 1)}>Prev</Button>
+                                {Array.from({ length: generatedPage }, (_, index) => (
+                                    <Button
+                                        key={index}
+                                        onClick={() => handlePageClick(index)}
+                                        className={`px-4 py-2 mx-1 ${generatedPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white'
+                                            } rounded hover:bg-blue-700 focus:outline-none`}
+                                    >
+                                        {index + 1}
+                                    </Button>
+                                ))}
+                                <Button onClick={() => setPage(page + 1)}>Next</Button>
                             </div>
                         </div>
                     </div>
