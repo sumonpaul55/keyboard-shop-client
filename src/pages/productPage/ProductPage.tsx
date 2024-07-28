@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useGetAllProductQuery } from '../../redux/features/products/productApi'
 import Loading from '../commonPage/Loading'
 import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
@@ -113,16 +113,18 @@ const ProductPage = () => {
                             </div>
                             <div className='pt-10 text-center flex items-center justify-center'>
                                 <Button onClick={() => setPage(page - 1)}>Prev</Button>
-                                {Array.from({ length: generatedPage }, (_, index) => (
-                                    <Button
+
+                                {Array.from({ length: generatedPage }, (_, index) => {
+                                    return <Button
                                         key={index}
                                         onClick={() => handlePageClick(index)}
-                                        className={`px-4 py-2 mx-1 ${generatedPage === index + 1 ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white'
+                                        className={`px-4 py-2 mx-1 ${generatedPage === index ? 'bg-blue-200 text-white' : 'bg-blue-500 text-white'
                                             } rounded hover:bg-blue-700 focus:outline-none`}
                                     >
                                         {index + 1}
                                     </Button>
-                                ))}
+                                })}
+
                                 <Button onClick={() => setPage(page + 1)}>Next</Button>
                             </div>
                         </div>

@@ -6,6 +6,7 @@ import Testimonial from "./Testimonial";
 import FeaturedBrand from "./FeaturedBrand";
 import { Link } from "react-router-dom";
 import Faq from "../faqPage/Faq";
+import WhyChooseUs from "./WhayChoseUs";
 
 
 const Home = () => {
@@ -39,6 +40,7 @@ const Home = () => {
             <FeaturedBrand />
             <Testimonial />
             <Faq />
+            <WhyChooseUs></WhyChooseUs>
         </main>
     );
 };
