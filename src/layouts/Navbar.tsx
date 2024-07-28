@@ -1,8 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaCartPlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { useGetTotalCartQuery } from '../redux/features/carts/cartApi';
+import Loading from '../pages/commonPage/Loading';
 
 export const NavBar = () => {
+    const { data, isLoading } = useGetTotalCartQuery({});
+
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef<HTMLDivElement | undefined | any>();
     const navBarItems = [
@@ -30,7 +34,10 @@ export const NavBar = () => {
             <Link to="/cart" className='group flex cursor-pointer flex-col'>
                 <FaCartPlus size={25} color='' /><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white'>2</span>
+            {
+                isLoading ? <Loading /> :
+                    <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white flex items-center justify-center'>{data?.data}</span>
+            }
         </li>,
         <li className="" key="6">
             <Link to="/product-manage" className='group flex cursor-pointer flex-col'>
@@ -52,7 +59,6 @@ export const NavBar = () => {
             document.removeEventListener('mousedown', closeDropDown);
         };
     }, []);
-
     return (
         <section className='px-4 pt-2 pb-1 sticky top-0 z-[9999] bg-white shadow-lg'>
             <div className="container mx-auto">

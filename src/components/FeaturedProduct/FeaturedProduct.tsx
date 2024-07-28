@@ -1,10 +1,8 @@
 import { Button, Rate } from "antd";
-import { useState } from "react";
 import { FaCartArrowDown, FaHeart } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { AnimateSpin } from "../../pages/commonPage/Loading";
-import { useAddToCartMutation } from "../../redux/features/products/productApi";
 import { toast } from "sonner";
+import { useAddToCartMutation } from "../../redux/features/carts/cartApi";
 
 export type TProduct = {
     _id: string;

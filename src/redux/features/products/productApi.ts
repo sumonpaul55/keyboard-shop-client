@@ -1,4 +1,5 @@
 import { baseApi } from "../../api/baseApi";
+import { tagTypes } from "../../Types";
 
 export const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,6 +11,7 @@ export const productApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: [tagTypes.products],
     }),
     // get all products
     getAllProduct: builder.query({
@@ -33,6 +35,7 @@ export const productApi = baseApi.injectEndpoints({
           params: query,
         };
       },
+      providesTags: [tagTypes.products],
     }),
 
     getProductField: builder.query({
@@ -47,6 +50,7 @@ export const productApi = baseApi.injectEndpoints({
           params: query,
         };
       },
+      providesTags: [tagTypes.products],
     }),
 
     getProductById: builder.query({
@@ -61,18 +65,9 @@ export const productApi = baseApi.injectEndpoints({
           params: id,
         };
       },
-    }),
-    // add to cart api
-    addToCart: builder.mutation({
-      query: (data) => {
-        return {
-          url: "/cart",
-          method: "POST",
-          body: data,
-        };
-      },
+      providesTags: [tagTypes.products],
     }),
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery, useAddToCartMutation } = productApi;
+export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery } = productApi;

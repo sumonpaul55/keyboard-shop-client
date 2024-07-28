@@ -1,11 +1,12 @@
 
 import { useParams } from 'react-router-dom'
-import { useAddToCartMutation, useGetProductByIdQuery } from '../../redux/features/products/productApi'
+import { useGetProductByIdQuery } from '../../redux/features/products/productApi'
 import Loading from '../commonPage/Loading'
 import Section from '../../layouts/Section'
 import { Button, Image, Rate } from 'antd'
 import { toast } from 'sonner'
 import SimilarBrand from './SimilarBrand'
+import { useAddToCartMutation } from '../../redux/features/carts/cartApi'
 
 const ProductDetails = () => {
     const id = useParams()
