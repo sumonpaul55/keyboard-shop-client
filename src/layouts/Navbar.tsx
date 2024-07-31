@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaCartPlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
-import { useGetTotalCartQuery } from '../redux/features/carts/cartApi';
-import Loading from '../pages/commonPage/Loading';
+import { useAppSelector } from '../redux/hook';
 
 export const NavBar = () => {
-    const { data, isLoading } = useGetTotalCartQuery({});
+    const state = useAppSelector((state) => state.cart.cart);
+
 
     const [dropDownState, setDropDownState] = useState(false);
     const dropDownMenuRef = useRef<HTMLDivElement | undefined | any>();
@@ -35,8 +35,7 @@ export const NavBar = () => {
                 <FaCartPlus size={25} color='' /><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
             {
-                isLoading ? <Loading /> :
-                    <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white flex items-center justify-center'>{data?.data}</span>
+                <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white flex items-center justify-center'>{state?.length ? state.length : 0}</span>
             }
         </li>,
         <li className="" key="6">
@@ -52,9 +51,7 @@ export const NavBar = () => {
                 setDropDownState(false);
             }
         };
-
         document.addEventListener('mousedown', closeDropDown);
-
         return () => {
             document.removeEventListener('mousedown', closeDropDown);
         };

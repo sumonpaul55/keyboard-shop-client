@@ -4,28 +4,16 @@ import { useGetProductByIdQuery } from '../../redux/features/products/productApi
 import Loading from '../commonPage/Loading'
 import Section from '../../layouts/Section'
 import { Button, Image, Rate } from 'antd'
-import { toast } from 'sonner'
 import SimilarBrand from './SimilarBrand'
-import { useAddToCartMutation } from '../../redux/features/carts/cartApi'
 
 const ProductDetails = () => {
     const id = useParams()
     const { data, isLoading } = useGetProductByIdQuery(id)
-    const [addCart] = useAddToCartMutation()
     const items = data?.data
 
     // handle add to cart
     const handleAddtoCart = (productId: any) => {
-        if (productId) {
-            const cartProduct = {
-                productId: productId,
-                quantity: 1
-            }
-            addCart(cartProduct)
-            toast.success("This Product Added to Your Cart", {
-                duration: 4000,
-            })
-        }
+
     }
     if (isLoading) {
         return <Loading />
@@ -47,11 +35,12 @@ const ProductDetails = () => {
                                     <Rate defaultValue={items.rating} style={{ color: "red" }} />
                                 </div>
                                 <h3 className='font-bold md:text-lg my-4 text-primary'>Price: {items.price} BDT</h3>
-                                <h3 className='font-bold mt-3'>Available Quantity: {items.quantity}</h3>
+                                <h3 className='font-bold mt-3'>Quantity: {items.quantity}</h3>
+                                <h3 className='font-bold mt-3'>Availablity: {items.quantity > 0 ? <span className='text-green-600'>Available</span> : <span className='text-red-600'>Not Available</span>}</h3>
                                 <p className='mt-4'>{items?.description}</p>
                             </div>
                             <div>
-                                <Button className='w-full' onClick={() => handleAddtoCart(id)}>Add To Cart</Button>
+                                <Button disabled={items?.quantity < 1} className='w-full' onClick={() => handleAddtoCart(id)}>Add To Cart</Button>
                             </div>
                         </div>
                     </div>

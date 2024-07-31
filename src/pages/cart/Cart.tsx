@@ -1,91 +1,101 @@
-import { Input, Table, TableColumnsType } from "antd"
-import { useGetAllCartsQuery } from "../../redux/features/carts/cartApi"
-import Loading from "../commonPage/Loading"
+import { Input, Image, Button } from "antd"
+import { useAppDispatch, useAppSelector } from "../../redux/hook"
 
-interface DataType {
-    key: React.Key;
-    image: string;
-    name: string;
-    brand: string;
-    quantity: number;
-    price: number;
-    rating: number;
-    description: string;
-    delete?: boolean | undefined;
-}
+import { BiTrash } from "react-icons/bi";
+
+import { updateQuantity } from "../../redux/features/cartSlice/cartSlice";
+import { useEffect } from "react";
+
 
 const Cart = () => {
-    const { data: CartProducts, isLoading } = useGetAllCartsQuery({})
-    if (isLoading) {
-        <Loading />
+    const state = useAppSelector((state) => state.cart.cart);
+    const dispatch = useAppDispatch()
+    const handleQuantityCahnge = (id: string, quantity: number) => {
+        // const isQuantityExist = state?.find(items => id === items._id)
+
+        dispatch(updateQuantity({ id, quantity }))
     }
 
-    const transformedProducts = CartProducts?.data?.map((product: any, index: number) => {
-        const productdata = product?.productId
-        return {
-            ...productdata,
-            key: index,
-            no: index + 1
+    const totalAmount = state.reduce((total, product) => total + (product.price * product.quantity), 0)
+    useEffect(() => {
+        if (state?.length) {
+            window.onbeforeunload = () => true;
         }
-    });
 
-
-    const columns: TableColumnsType<DataType> = [
-        {
-            title: 'No',
-            dataIndex: 'no',
-        },
-        {
-            title: 'Title',
-            dataIndex: 'name',
-            render: (text: string) => <a className='font-bold'>{text}</a>,
-        },
-        {
-            title: 'Image',
-            dataIndex: 'image',
-            render: (image) => {
-                return <img src={image} width={100} />
-            }
-        },
-        {
-            title: 'Brand',
-            dataIndex: 'brand',
-            render: (p) => <h4 className='font-bold'>{p}</h4>
-        },
-        {
-            title: 'Quantity',
-            dataIndex: 'quantity',
-            render: (quantity) => <Input type="number" defaultValue={quantity} style={{ width: "200px" }} />
-        },
-        {
-            title: 'Price',
-            dataIndex: 'price',
-            render: (price) => <h4 className='font-bold'>৳ {price}</h4>
-        },
-
-    ];
-
-
-
-
-
+        return () => {
+            window.onbeforeunload = null;
+        };
+    }, [state]);
     return (
-        <main className="py-10 px-1 md:px-0 min-h-screen">
-            <section>
-                <div className="container mx-auto">
-                    <h1 className="font-semibold md:text-lg">Your Cart</h1>
-                    <div>
-                        <Table
-                            // rowSelection={{
-                            //     ...rowSelection,
-                            // }}
-                            columns={columns}
-                            dataSource={transformedProducts}
-                        />
+        <>
+            <main className="py-10 px-1 md:px-0 min-h-screen">
+                <section>
+                    <div className="container mx-auto">
+                        <h1 className="font-semibold md:text-lg">Your Cart</h1>
+                        {state?.length ?
+                            <div className="overflow-x-auto">
+                                <table className="mt-10 w-full">
+                                    <thead className="">
+                                        <tr className="border">
+                                            <th className="border text-xs sm:text-base p-1">No</th>
+                                            <th className="border text-xs sm:text-base p-1">Product Name</th>
+                                            <th className="border text-xs sm:text-base p-1">Image</th>
+                                            <th className="border text-xs sm:text-base p-1">Unit Price</th>
+                                            <th className="border text-xs sm:text-base p-1">Quantity</th>
+                                            <th className="border text-xs sm:text-base p-1">Amount</th>
+                                            <th className="border text-xs sm:text-base p-1">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            state?.map((product: any, index: number) => (
+                                                <tr className="border" key={index}>
+                                                    <td className="text-center py-2 border font-semibold text-xs sm:text-base">{index + 1}</td>
+                                                    <td className="p-2 font-semibold text-xs sm:text-base border sm:border-none">{product?.name}</td>
+                                                    <td className="p-2 text-center"><Image src={product?.image} className="w-full sm:max-w-[100px] rounded-md" /></td>
+                                                    <td className="p-2 text-center text-xs sm:text-base border sm:border-none">৳ {product?.price}</td>
+                                                    <td className="p-2 text-center text-xs sm:text-base border sm:border-none">
+                                                        <Input type="number" className="max-w-[100px]" min={1} max={product.stock} value={product.quantity} onChange={(e) => handleQuantityCahnge(product._id, Number(e.target.value))} />
+                                                    </td>
+                                                    <td className="text-center font-semibold text-xs sm:text-base border sm:border-none">৳ {product.price * product.quantity}</td>
+                                                    <td className="font-semibold text-blue-600 text-center border text-xs sm:text-base">
+                                                        <BiTrash size={30} className="mx-auto cursor-pointer hover:text-red-600" />
+                                                    </td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                                <div className="border p-5 w-full bg-slate-50">
+                                    <div className="md:w-[90%] mx-auto">
+                                        <div className="flex justify-between">
+                                            <h1 className="font-bold text-lg sm:text-xl">Total</h1>
+                                            <h3 className="font-semibold sm:text-lg md:text-xl">{totalAmount}</h3>
+                                        </div>
+                                        <div className="flex my-2 justify-between">
+                                            <h1 className="text-lg sm:text-xl">Discount</h1>
+                                            <h3 className="font-bold sm:text-lg md:text-xl lg:text-2xl">{0}</h3>
+                                        </div>
+                                        <hr />
+                                        <div className="flex my-2 justify-between">
+                                            <h1 className="text-lg sm:text-xl font-semibold">Grand Total</h1>
+                                            <h3 className="font-bold sm:text-lg md:text-xl lg:text-2xl">{totalAmount}</h3>
+                                        </div>
+                                        <div className="text-center mt-5">
+                                            <Button className="bg-primary text-white">
+                                                Procced To Checkout
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> :
+                            <h3 className="mt-7 font-bold text-lg md:text-2xl text-center">No Product to your cart</h3>
+                        }
                     </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main >
+        </>
+
     )
 }
 

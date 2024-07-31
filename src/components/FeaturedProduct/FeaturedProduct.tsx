@@ -1,8 +1,8 @@
 import { Button, Rate } from "antd";
 import { FaCartArrowDown, FaHeart } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
-import { useAddToCartMutation } from "../../redux/features/carts/cartApi";
+import { useAppDispatch } from "../../redux/hook";
+import { addToCart } from "../../redux/features/cartSlice/cartSlice";
 
 export type TProduct = {
     _id: string;
@@ -13,36 +13,12 @@ export type TProduct = {
     price: number;
     rating: number;
     description: string;
-    delete?: boolean | undefined;
+    delete: boolean;
 }
 
 
 const FeaturedProduct = (product: TProduct) => {
-
-    const [addCart] = useAddToCartMutation()
-
-    // handle add to cart
-    const handleAddtoCart = async (productId: string) => {
-        if (productId) {
-            const cartProduct = {
-                productId: productId,
-                quantity: 1
-            }
-
-            const res = await addCart(cartProduct)
-            if (res?.data) {
-                toast.success("This Product Added to Your Cart", {
-                    duration: 4000
-                })
-            }
-            else {
-                toast.error(res?.error?.data?.message!, {
-                    duration: 4000
-                })
-            }
-        }
-    }
-
+    const dispatch = useAppDispatch()
 
     // console.log(product)
     return (
@@ -69,7 +45,7 @@ const FeaturedProduct = (product: TProduct) => {
                         Add To Favourite</Button>
                 </div>
                 <div className="absolute bottom-full -right-full w-1/2 group-hover:right-0 duration-500">
-                    <Button style={{ width: "100%" }} className="bg-base-yellow text-white rounded-none" onClick={() => handleAddtoCart(product._id)}>Add To Cart <FaCartArrowDown /></Button>
+                    <Button disabled={product?.quantity < 1} style={{ width: "100%" }} className="bg-base-yellow disabled:bg-slate-50 text-white rounded-none" onClick={() => dispatch(addToCart(product))}>Add To Cart <FaCartArrowDown /></Button>
                 </div>
             </div>
             <div className="absolute top-2 text-white left-0 px-2 flex justify-between w-full">

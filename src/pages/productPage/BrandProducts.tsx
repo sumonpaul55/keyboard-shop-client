@@ -5,12 +5,9 @@ import Loading, { } from "../commonPage/Loading";
 import { TProduct } from "../../components/FeaturedProduct/FeaturedProduct";
 import { motion } from "framer-motion";
 import { Button } from "antd";
-import { toast } from "sonner";
-import { useAddToCartMutation } from "../../redux/features/carts/cartApi";
 
 const BrandProducts = () => {
     const brand = useParams();
-    const [addCart] = useAddToCartMutation()
     const { data, isLoading } = useGetAllProductQuery(brand)
     const brandData = data?.data
     if (isLoading) {
@@ -19,14 +16,8 @@ const BrandProducts = () => {
     // handle add to cart
     const handleAddtoCart = (productId: any) => {
         if (productId) {
-            const cartProduct = {
-                productId: productId,
-                quantity: 1
-            }
-            addCart(cartProduct)
-            toast.success("This Product Added to Your Cart", {
-                duration: 4000,
-            })
+
+
         }
     }
     return (

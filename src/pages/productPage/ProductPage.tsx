@@ -13,16 +13,13 @@ const ProductPage = () => {
     const [brand, setBrand] = useState({})
     const [range, setRange] = useState<string | undefined>()
     const [page, setPage] = useState(1);
-
     const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand, page: page })
     // brnads woriking on
     if (isLoading) {
         return <Loading />
     }
-
     const onlyBrands: string[] = []
     let brandsArray;
-
     if (!brandLoading) {
         brands?.forEach((items: any) => {
             onlyBrands.push(items.brand)
@@ -30,18 +27,15 @@ const ProductPage = () => {
         const uniqBrnd = new Set(onlyBrands)
         brandsArray = Array.from(uniqBrnd)
     }
-
     const priceRange = [
         "0-300",
         "300-800",
         "800-1000"
     ]
-
     const options: SelectProps["options"] = [];
     brandsArray?.map((bname) => {
         return options.push({ value: bname, label: bname })
     })
-
     // handle reset
     const handleReset = () => {
         setBrand({})
@@ -50,6 +44,7 @@ const ProductPage = () => {
     }
     // page number
     const generatedPage = Math.ceil((data?.data.length / 12) + 1)
+
     const handlePageClick = (pageNumber: any) => {
         setPage(pageNumber + 1)
     }
@@ -77,7 +72,6 @@ const ProductPage = () => {
                                         priceRange?.map((items, idx) => (<Button onClick={() => setRange(items)} key={idx} className=''>{items}</Button>))
                                     }
                                 </div>
-
                             </div>
                             <div className='md:p-4 mx-5'>
                                 <Button style={{ width: "100%" }} className='bg-primary text-white' onClick={handleReset}>
@@ -112,20 +106,19 @@ const ProductPage = () => {
                                 }
                             </div>
                             <div className='pt-10 text-center flex items-center justify-center'>
-                                <Button onClick={() => setPage(page - 1)}>Prev</Button>
+                                <Button onClick={() => setPage(page - 1)} disabled={generatedPage > page}>Prev</Button>
 
                                 {Array.from({ length: generatedPage }, (_, index) => {
                                     return <Button
                                         key={index}
                                         onClick={() => handlePageClick(index)}
-                                        className={`px-4 py-2 mx-1 ${generatedPage === index ? 'bg-blue-200 text-white' : 'bg-blue-500 text-white'
+                                        className={`px-4 py-2 mx-1 ${generatedPage === index ? 'bg-red-400 text-white' : 'bg-blue-500 text-white'
                                             } rounded hover:bg-blue-700 focus:outline-none`}
                                     >
                                         {index + 1}
                                     </Button>
                                 })}
-
-                                <Button onClick={() => setPage(page + 1)}>Next</Button>
+                                <Button disabled={generatedPage === page} onClick={() => setPage(page + 1)}>Next</Button>
                             </div>
                         </div>
                     </div>
