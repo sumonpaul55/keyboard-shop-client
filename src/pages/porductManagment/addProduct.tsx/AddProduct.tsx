@@ -23,7 +23,7 @@ const AddProduct: React.FC = () => {
 
     const onFinish: FormProps['onFinish'] = (values) => {
         toast.loading("Product Uploading", { id: "productImg" })
-        const { description, name, price, quantity, brand }: any = values
+        const { description, name, price, availableQuantity, brand }: any = values
         const formData = new FormData();
         fileList.forEach((file) => {
             formData.append('image', file as FileType);
@@ -38,7 +38,7 @@ const AddProduct: React.FC = () => {
                 message.success('upload successfully.');
                 if (data?.data?.display_url) {
                     const productData = {
-                        rating, description, name, price, quantity, brand, image: data?.data?.display_url
+                        rating, description, name, price, availableQuantity, brand, image: data?.data?.display_url
                     }
                     await createProduct(productData)
                     // console.log(res)
@@ -83,7 +83,7 @@ const AddProduct: React.FC = () => {
                     </Row>
                     <InputItems type="text" names="brand" errorMessage='Brand name is required' label="Brand" />
 
-                    <InputItems label="Quantity" names="quantity" type="number" style={{ width: "100%" }} errorMessage='Quantity is required as positive number' />
+                    <InputItems label="Quantity" names="availableQuantity" type="number" style={{ width: "100%" }} errorMessage='Quantity is required as positive number' />
 
                     <InputItems label="Price" names="price" type="number" style={{ width: "100%" }} errorMessage='Price is required as positive number' />
 

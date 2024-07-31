@@ -5,12 +5,12 @@ export type TCart = {
   image: string;
   name: string;
   brand: string;
-  quantity: number;
+  availableQuantity?: number;
   price: number;
   rating: number;
   description: string;
   delete: boolean;
-  stock?: number;
+  quantity: number;
 };
 type UpdateQuantity = {
   id: string;
@@ -33,7 +33,7 @@ const cartSlice = createSlice({
       if (isExist) {
         throw "This product is Already added";
       } else {
-        state.cart.push({ ...action.payload, stock: action.payload.quantity, quantity: 1 });
+        state.cart.push({ ...action.payload, quantity: 1 });
       }
     },
     updateQuantity: (state, action: PayloadAction<UpdateQuantity>) => {

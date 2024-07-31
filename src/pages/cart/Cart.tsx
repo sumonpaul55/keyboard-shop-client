@@ -5,15 +5,21 @@ import { BiTrash } from "react-icons/bi";
 
 import { updateQuantity } from "../../redux/features/cartSlice/cartSlice";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 
 const Cart = () => {
     const state = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch()
-    const handleQuantityCahnge = (id: string, quantity: number) => {
+    const handleQuantityCahnge = (product: any, quantity: number) => {
         // const isQuantityExist = state?.find(items => id === items._id)
-
-        dispatch(updateQuantity({ id, quantity }))
+        if (quantity > product.availableQuantity) {
+            toast.error(`Product Limit exceed`, {
+                position: "top-right",
+                duration: 4000
+            })
+        }
+        dispatch(updateQuantity({ id: product._id, quantity }))
     }
 
     const totalAmount = state.reduce((total, product) => total + (product.price * product.quantity), 0)
@@ -55,7 +61,14 @@ const Cart = () => {
                                                     <td className="p-2 text-center"><Image src={product?.image} className="w-full sm:max-w-[100px] rounded-md" /></td>
                                                     <td className="p-2 text-center text-xs sm:text-base border sm:border-none">৳ {product?.price}</td>
                                                     <td className="p-2 text-center text-xs sm:text-base border sm:border-none">
-                                                        <Input type="number" className="max-w-[100px]" min={1} max={product.stock} value={product.quantity} onChange={(e) => handleQuantityCahnge(product._id, Number(e.target.value))} />
+
+                                                        <Button onClick={() => handleQuantityCahnge(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
+
+
+                                                        <Input type="" className="max-w-[70px]" min={1} value={product.quantity} onChange={(e) => handleQuantityCahnge(product, Number(e.target.value))} />
+
+
+                                                        <Button onClick={() => handleQuantityCahnge(product, Number(product.quantity - 1))} disabled={product.quantity <= 1}>-</Button>
                                                     </td>
                                                     <td className="text-center font-semibold text-xs sm:text-base border sm:border-none">৳ {product.price * product.quantity}</td>
                                                     <td className="font-semibold text-blue-600 text-center border text-xs sm:text-base">

@@ -9,7 +9,7 @@ export type TProduct = {
     image: string;
     name: string;
     brand: string;
-    quantity: number;
+    availableQuantity: number;
     price: number;
     rating: number;
     description: string;
@@ -33,7 +33,7 @@ const FeaturedProduct = (product: TProduct) => {
                     <h4 className="font-bold text-sm sm:text-base">Price:</h4>
                     <span className="font-bold text-sm sm:text-base">৳ {product?.price}</span>
                 </div>
-                <h4 className="font-semibold mt-1 text-slate-700 text-xs sm:text-base">Quantity: {product.quantity}</h4>
+                <h4 className="font-semibold mt-1 text-slate-700 text-xs sm:text-base">Quantity: {product.availableQuantity}</h4>
                 <Link to={`/product-details/${product?._id}`}>
                     <Button style={{ width: "100%" }} className="mt-4 bg-base-yellow text-white flex items-center gap-3">View Details
                         view
@@ -45,7 +45,7 @@ const FeaturedProduct = (product: TProduct) => {
                         Add To Favourite</Button>
                 </div>
                 <div className="absolute bottom-full -right-full w-1/2 group-hover:right-0 duration-500">
-                    <Button disabled={product?.quantity < 1} style={{ width: "100%" }} className="bg-base-yellow disabled:bg-slate-50 text-white rounded-none" onClick={() => dispatch(addToCart(product))}>Add To Cart <FaCartArrowDown /></Button>
+                    <Button disabled={product?.availableQuantity < 1} style={{ width: "100%" }} className="bg-base-yellow disabled:bg-slate-50 text-white rounded-none" onClick={() => dispatch(addToCart(product))}>Add To Cart <FaCartArrowDown /></Button>
                 </div>
             </div>
             <div className="absolute top-2 text-white left-0 px-2 flex justify-between w-full">

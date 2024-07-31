@@ -8,7 +8,7 @@ interface DataType {
     image: string;
     name: string;
     brand: string;
-    quantity: number;
+    availableQuantity: number;
     price: number;
     rating: number;
     description: string;
@@ -49,7 +49,7 @@ const ProductTAble: React.FC = () => {
         },
         {
             title: 'Quantity',
-            dataIndex: 'quantity',
+            dataIndex: 'availableQuantity',
             render: (p) => <h4 className='font-bold'>{p}</h4>
         },
         {
