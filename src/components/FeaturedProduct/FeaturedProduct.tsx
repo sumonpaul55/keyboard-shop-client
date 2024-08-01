@@ -25,11 +25,15 @@ const FeaturedProduct = (product: TProduct) => {
     const handleAddtoCart = (product: TProduct) => {
         if (product.availableQuantity < 1) {
             toast.error("This product is not available.")
+            return
         }
         if (state.find(item => item._id === product._id)) {
             toast.error("This product allready added to your Cart")
+            return
         }
-        dispatch(addToCart(product))
+        else {
+            dispatch(addToCart(product))
+        }
     }
     // console.log(product)
     return (

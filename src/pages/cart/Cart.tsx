@@ -4,6 +4,7 @@ import { BiTrash } from "react-icons/bi";
 import { updateQuantity } from "../../redux/features/cartSlice/cartSlice";
 import { useEffect } from "react";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 
 const Cart = () => {
@@ -60,10 +61,10 @@ const Cart = () => {
                                                     <td className="p-2 text-center text-xs sm:text-base border sm:border-none">৳ {product?.price}</td>
                                                     <td className="p-2 text-center text-xs sm:text-base border sm:border-none">
 
-                                                        <div className="border w-fit mx-auto">
-                                                            <Button className="border-r-primary border-transparent rounded-none bg-secondary" onClick={() => handleQuantityCahnge(product, Number(product.quantity - 1))} disabled={product.quantity <= 1}>-</Button>
-                                                            <Input type="" className="m-0 text-center max-w-[70px] border-none" min={1} value={product.quantity} onChange={(e) => handleQuantityCahnge(product, Number(e.target.value))} />
-                                                            <Button className="border-l-primary border-transparent rounded-none bg-secondary hover:border" onClick={() => handleQuantityCahnge(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
+                                                        <div className="border w-fit mx-auto flex flex-col md:flex-row">
+                                                            <Button className="border-primary md:border-r-primary md:border-transparent rounded-none border-opacity-50 bg-secondary hover:border w-full md:w-auto" onClick={() => handleQuantityCahnge(product, Number(product.quantity - 1))} disabled={product.quantity <= 1}>-</Button>
+                                                            <Input type="" className="m-0 text-center max-w-[70px] border-x-primary border-opacity-50 rounded-none md:border-none" min={1} value={product.quantity} onChange={(e) => handleQuantityCahnge(product, Number(e.target.value))} />
+                                                            <Button className="border-primary md:border-l-primary md:border-transparent border-opacity-50 rounded-none bg-secondary hover:border w-full md:w-auto" onClick={() => handleQuantityCahnge(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
                                                         </div>                                                    </td>
                                                     <td className="text-center font-semibold text-xs sm:text-base border sm:border-none">৳ {product.price * product.quantity}</td>
                                                     <td className="font-semibold text-blue-600 text-center border text-xs sm:text-base">
@@ -90,9 +91,9 @@ const Cart = () => {
                                             <h3 className="font-bold sm:text-lg md:text-xl lg:text-2xl">{totalAmount}</h3>
                                         </div>
                                         <div className="text-center mt-5">
-                                            <Button className="bg-primary text-white">
+                                            <Link to="/checkout" className="bg-primary text-white py-2 px-3 rounded-md">
                                                 Procced To Checkout
-                                            </Button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

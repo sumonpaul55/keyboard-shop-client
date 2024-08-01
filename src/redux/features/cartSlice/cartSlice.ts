@@ -29,12 +29,12 @@ const cartSlice = createSlice({
   initialState: intialState,
   reducers: {
     addToCart: (state, action: PayloadAction<TCart>) => {
-      const isExist = state.cart.find((items) => items._id === action.payload._id);
-      if (isExist) {
-        return;
-      } else {
-        state.cart.push({ ...action.payload, quantity: 1 });
-      }
+      // const isExist = state.cart.find((items) => items._id === action.payload._id);
+      // if (isExist) {
+      //   return;
+      // } else {
+      // }
+      state.cart.push({ ...action.payload, quantity: 1 });
     },
     updateQuantity: (state, action: PayloadAction<UpdateQuantity>) => {
       const { id, quantity } = action.payload;
