@@ -31,7 +31,7 @@ const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<TCart>) => {
       const isExist = state.cart.find((items) => items._id === action.payload._id);
       if (isExist) {
-        throw "This product is Already added";
+        return;
       } else {
         state.cart.push({ ...action.payload, quantity: 1 });
       }

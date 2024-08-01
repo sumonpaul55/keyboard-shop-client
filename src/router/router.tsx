@@ -10,6 +10,7 @@ import ProductPage from "../pages/productPage/ProductPage";
 import ProductDetails from "../pages/ProductDetail/ProductDetails";
 import Contact from "../pages/contact/Contact";
 import BrandProducts from "../pages/productPage/BrandProducts";
+import Checkout from "../pages/checkout/Checkout";
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "/product-details/:id",
                 element: <ProductDetails />
+            },
+            {
+                path: "/checkout",
+                element: <Checkout />
             },
             {
                 path: "/about-us",

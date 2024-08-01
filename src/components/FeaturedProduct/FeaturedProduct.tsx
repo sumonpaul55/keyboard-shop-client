@@ -1,8 +1,9 @@
 import { Button, Rate } from "antd";
 import { FaCartArrowDown, FaHeart } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { addToCart } from "../../redux/features/cartSlice/cartSlice";
+import { toast } from "sonner";
 
 export type TProduct = {
     _id: string;
@@ -10,6 +11,7 @@ export type TProduct = {
     name: string;
     brand: string;
     availableQuantity: number;
+    quantity: number;
     price: number;
     rating: number;
     description: string;
@@ -18,8 +20,17 @@ export type TProduct = {
 
 
 const FeaturedProduct = (product: TProduct) => {
+    const state = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch()
-
+    const handleAddtoCart = (product: TProduct) => {
+        if (product.availableQuantity < 1) {
+            toast.error("This product is not available.")
+        }
+        if (state.find(item => item._id === product._id)) {
+            toast.error("This product allready added to your Cart")
+        }
+        dispatch(addToCart(product))
+    }
     // console.log(product)
     return (
         <div className="relative overflow-hidden group h-full flex flex-col justify-between">
@@ -45,7 +56,7 @@ const FeaturedProduct = (product: TProduct) => {
                         Add To Favourite</Button>
                 </div>
                 <div className="absolute bottom-full -right-full w-1/2 group-hover:right-0 duration-500">
-                    <Button disabled={product?.availableQuantity < 1} style={{ width: "100%" }} className="bg-base-yellow disabled:bg-slate-50 text-white rounded-none" onClick={() => dispatch(addToCart(product))}>Add To Cart <FaCartArrowDown /></Button>
+                    <Button style={{ width: "100%" }} className="bg-base-yellow disabled:bg-slate-50 text-white rounded-none" onClick={() => handleAddtoCart(product)}>Add To Cart <FaCartArrowDown /></Button>
                 </div>
             </div>
             <div className="absolute top-2 text-white left-0 px-2 flex justify-between w-full">

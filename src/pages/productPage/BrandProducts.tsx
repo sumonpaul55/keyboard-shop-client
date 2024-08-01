@@ -5,8 +5,13 @@ import Loading, { } from "../commonPage/Loading";
 import { TProduct } from "../../components/FeaturedProduct/FeaturedProduct";
 import { motion } from "framer-motion";
 import { Button } from "antd";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { toast } from "sonner";
+import { addToCart } from "../../redux/features/cartSlice/cartSlice";
 
 const BrandProducts = () => {
+    const state = useAppSelector((state) => state.cart.cart);
+    const dispatch = useAppDispatch()
     const brand = useParams();
     const { data, isLoading } = useGetAllProductQuery(brand)
     const brandData = data?.data
@@ -14,11 +19,15 @@ const BrandProducts = () => {
         return <Loading></Loading>
     }
     // handle add to cart
-    const handleAddtoCart = (productId: any) => {
-        if (productId) {
 
-
+    const handleAddtoCart = (product: TProduct) => {
+        if (product.availableQuantity < 1) {
+            toast.error("This product is not available.")
         }
+        if (state.find(item => item._id === product._id)) {
+            toast.error("This product allready added to your Cart")
+        }
+        dispatch(addToCart(product))
     }
     return (
         <Section className="min-h-screen">
@@ -37,7 +46,7 @@ const BrandProducts = () => {
                                 <div className="p-3 md:p-4">
                                     <div className="flex items-center justify-between">
                                         <h3 className="font-semibold md:text-lg">{items.name}</h3>
-                                        <Button onClick={() => handleAddtoCart(items._id)} style={{ padding: "0 5px" }}>Add to cart</Button>
+                                        <Button onClick={() => handleAddtoCart(items)} style={{ padding: "0 5px" }}>Add to cart</Button>
                                     </div>
                                     <p className="mt-4 line-clamp-2">{items.description}</p>
                                     <Link to={`/product-details/${items?._id}`}>

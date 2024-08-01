@@ -1,8 +1,6 @@
 import { Input, Image, Button } from "antd"
 import { useAppDispatch, useAppSelector } from "../../redux/hook"
-
 import { BiTrash } from "react-icons/bi";
-
 import { updateQuantity } from "../../redux/features/cartSlice/cartSlice";
 import { useEffect } from "react";
 import { toast } from "sonner";
@@ -13,8 +11,8 @@ const Cart = () => {
     const dispatch = useAppDispatch()
     const handleQuantityCahnge = (product: any, quantity: number) => {
         // const isQuantityExist = state?.find(items => id === items._id)
-        if (quantity > product.availableQuantity) {
-            toast.error(`Product Limit exceed`, {
+        if (quantity >= product.availableQuantity) {
+            toast.error(`Product Limit Exceeded`, {
                 position: "top-right",
                 duration: 4000
             })
@@ -40,7 +38,7 @@ const Cart = () => {
                         <h1 className="font-semibold md:text-lg">Your Cart</h1>
                         {state?.length ?
                             <div className="overflow-x-auto">
-                                <table className="mt-10 w-full">
+                                <table className="mt-6 w-full">
                                     <thead className="">
                                         <tr className="border">
                                             <th className="border text-xs sm:text-base p-1">No</th>
@@ -62,14 +60,11 @@ const Cart = () => {
                                                     <td className="p-2 text-center text-xs sm:text-base border sm:border-none">৳ {product?.price}</td>
                                                     <td className="p-2 text-center text-xs sm:text-base border sm:border-none">
 
-                                                        <Button onClick={() => handleQuantityCahnge(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
-
-
-                                                        <Input type="" className="max-w-[70px]" min={1} value={product.quantity} onChange={(e) => handleQuantityCahnge(product, Number(e.target.value))} />
-
-
-                                                        <Button onClick={() => handleQuantityCahnge(product, Number(product.quantity - 1))} disabled={product.quantity <= 1}>-</Button>
-                                                    </td>
+                                                        <div className="border w-fit mx-auto">
+                                                            <Button className="border-r-primary border-transparent rounded-none bg-secondary" onClick={() => handleQuantityCahnge(product, Number(product.quantity - 1))} disabled={product.quantity <= 1}>-</Button>
+                                                            <Input type="" className="m-0 text-center max-w-[70px] border-none" min={1} value={product.quantity} onChange={(e) => handleQuantityCahnge(product, Number(e.target.value))} />
+                                                            <Button className="border-l-primary border-transparent rounded-none bg-secondary hover:border" onClick={() => handleQuantityCahnge(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
+                                                        </div>                                                    </td>
                                                     <td className="text-center font-semibold text-xs sm:text-base border sm:border-none">৳ {product.price * product.quantity}</td>
                                                     <td className="font-semibold text-blue-600 text-center border text-xs sm:text-base">
                                                         <BiTrash size={30} className="mx-auto cursor-pointer hover:text-red-600" />
