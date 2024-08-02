@@ -75,7 +75,8 @@ const Cart = () => {
                                                                 }
                                                             }} />
                                                             <Button className="border-primary md:border-l-primary md:border-transparent border-opacity-50 rounded-none bg-secondary hover:border w-full md:w-auto" onClick={() => handleQuantityChange(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
-                                                        </div>                                                    </td>
+                                                        </div>
+                                                    </td>
                                                     <td className="text-center font-semibold text-xs sm:text-base border sm:border-none">৳ {product.price * product.quantity}</td>
                                                     <td className="font-semibold text-blue-600 text-center border text-xs sm:text-base">
                                                         <BiTrash size={30} className="mx-auto cursor-pointer hover:text-red-600" />
