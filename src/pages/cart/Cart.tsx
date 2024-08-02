@@ -10,11 +10,10 @@ import { Link } from "react-router-dom";
 const Cart = () => {
     const state = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch()
-    const handleQuantityCahnge = (product: any, quantity: number) => {
+    const handleQuantityChange = (product: any, quantity: number) => {
         // const isQuantityExist = state?.find(items => id === items._id)
         if (quantity >= product.availableQuantity) {
-            toast.error(`Product Limit Exceeded`, {
-                position: "top-right",
+            toast.error(`Maximum Product available ${product.availableQuantity}`, {
                 duration: 4000
             })
         }
@@ -26,7 +25,6 @@ const Cart = () => {
         if (state?.length) {
             window.onbeforeunload = () => true;
         }
-
         return () => {
             window.onbeforeunload = null;
         };
@@ -62,9 +60,21 @@ const Cart = () => {
                                                     <td className="p-2 text-center text-xs sm:text-base border sm:border-none">
 
                                                         <div className="border w-fit mx-auto flex flex-col md:flex-row">
-                                                            <Button className="border-primary md:border-r-primary md:border-transparent rounded-none border-opacity-50 bg-secondary hover:border w-full md:w-auto" onClick={() => handleQuantityCahnge(product, Number(product.quantity - 1))} disabled={product.quantity <= 1}>-</Button>
-                                                            <Input type="" className="m-0 text-center max-w-[70px] border-x-primary border-opacity-50 rounded-none md:border-none" min={1} value={product.quantity} onChange={(e) => handleQuantityCahnge(product, Number(e.target.value))} />
-                                                            <Button className="border-primary md:border-l-primary md:border-transparent border-opacity-50 rounded-none bg-secondary hover:border w-full md:w-auto" onClick={() => handleQuantityCahnge(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
+                                                            <Button className="border-primary md:border-r-primary md:border-transparent rounded-none border-opacity-50 bg-secondary hover:border w-full md:w-auto" onClick={() => handleQuantityChange(product, Number(product.quantity - 1))} disabled={product.quantity <= 1}>-</Button>
+                                                            <Input type="" className="m-0 text-center max-w-[70px] border-x-primary border-opacity-50 rounded-none md:border-none" min={1} max={product.availableQuantity} value={product.quantity} onChange={(e) => {
+                                                                const value = Number(e.target.value);
+                                                                if (value <= product.availableQuantity && value > 0) {
+
+                                                                    handleQuantityChange(product, value);
+                                                                } else if (value < 1) {
+                                                                    toast.error("You should select minimum 1 product")
+                                                                    handleQuantityChange(product, 1)
+                                                                }
+                                                                else {
+                                                                    handleQuantityChange(product, product.availableQuantity);
+                                                                }
+                                                            }} />
+                                                            <Button className="border-primary md:border-l-primary md:border-transparent border-opacity-50 rounded-none bg-secondary hover:border w-full md:w-auto" onClick={() => handleQuantityChange(product, Number(product.quantity + 1))} disabled={product.availableQuantity <= product.quantity}>+</Button>
                                                         </div>                                                    </td>
                                                     <td className="text-center font-semibold text-xs sm:text-base border sm:border-none">৳ {product.price * product.quantity}</td>
                                                     <td className="font-semibold text-blue-600 text-center border text-xs sm:text-base">
