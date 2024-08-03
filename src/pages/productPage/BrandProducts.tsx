@@ -22,7 +22,7 @@ const BrandProducts = () => {
 
     const handleAddtoCart = (product: TProduct) => {
         if (product.availableQuantity < 1) {
-            toast.error("This product is not available.")
+            return toast.error("This product is not available.")
         }
         if (state.find(item => item._id === product._id)) {
             toast.error("This product allready added to your Cart")
