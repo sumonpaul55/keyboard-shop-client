@@ -48,6 +48,7 @@ const ProductPage = () => {
     const handlePageClick = (pageNumber: any) => {
         setPage(pageNumber + 1)
     }
+
     return (
         <main className='p-0 md:p-2'>
             <section className='py-5'>

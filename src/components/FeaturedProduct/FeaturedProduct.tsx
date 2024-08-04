@@ -22,13 +22,19 @@ export type TProduct = {
 const FeaturedProduct = (product: TProduct) => {
     const state = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch()
+
+
     const handleAddtoCart = (product: TProduct) => {
         if (product.availableQuantity < 1) {
-            toast.error("This product is not available.")
+            toast.error("This product is not available.", {
+                duration: 1000
+            })
             return
         }
         if (state.find(item => item._id === product._id)) {
-            toast.error("This product allready added to your Cart")
+            toast.error("This product allready added to your Cart", {
+                duration: 1000
+            })
             return
         }
         else {
