@@ -1,7 +1,7 @@
 import { Button, Form, FormProps, Input, Radio } from 'antd'
 import { useAppDispatch, useAppSelector } from '../../redux/hook'
 // import { FieldType } from './checkout.interface'
-import { Navigate, useLocation, useNavigate, } from 'react-router-dom'
+import { useLocation, useNavigate, } from 'react-router-dom'
 import { useAddOrderMutation } from '../../redux/features/orders/ordersApi';
 import { toast } from 'sonner';
 import { clearCart } from '../../redux/features/cartSlice/cartSlice';
@@ -29,9 +29,11 @@ const Checkout = () => {
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
         const { name, email, phone, address, paymentMethod } = values;
+
         state?.map((items) => (
             products.push({ productId: items?._id, productQuantity: items?.quantity })
         ))
+
         const checkoutItem = {
             name, email, phone, address, paymentMethod, products, totalAmout
         }
@@ -43,7 +45,6 @@ const Checkout = () => {
             })
             navigate("/products")
         }
-        // console.log(res?.error)
         if (res?.error) {
             toast.error(`Something went wrong. Checkout not completed`)
         }

@@ -5,6 +5,7 @@ import { deleteProducts, updateQuantity } from "../../redux/features/cartSlice/c
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const Cart = () => {
@@ -25,9 +26,26 @@ const Cart = () => {
     const totalAmount = state.reduce((total, product) => total + (Number(product.price) * Number(product.quantity)), 0)
     // handle delete from cart
     const handleDeleteItem = (id: string) => {
-        dispatch(deleteProducts(id))
-    }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
 
+            if (result.isConfirmed) {
+                dispatch(deleteProducts(id))
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Product has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    }
 
     useEffect(() => {
         if (state?.length) {
@@ -89,7 +107,7 @@ const Cart = () => {
                                                     </td>
                                                     <td className="text-center font-semibold text-xs sm:text-base border sm:border-none">৳ {product.price * product.quantity}</td>
                                                     <td className="font-semibold text-blue-600 text-center border text-xs sm:text-base">
-                                                        <Button onClick={() => handleDeleteItem(product._id)}>
+                                                        <Button onClick={() => handleDeleteItem(product._id)} className="w-fit border-0">
                                                             <BiTrash size={30} className="mx-auto cursor-pointer hover:text-red-600" />
                                                         </Button>
                                                     </td>
