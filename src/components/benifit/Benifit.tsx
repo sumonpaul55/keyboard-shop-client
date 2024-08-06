@@ -5,13 +5,22 @@ import freshiping from '../../assets/animation/freshiping.gif'
 import satisfy from '../../assets/animation/satisfy.gif'
 import { FaCheckDouble } from "react-icons/fa6";
 import Section from '../../layouts/Section';
+import { motion } from "framer-motion";
 
 const Benifit = () => {
     return (
         <Section className="bg-secondary">
             <h1 className="font-bold text-center text-lg sm:text-2xl">Secure Online Shopping</h1>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-5 md:gap-7 mt-10'>
-                <div className="py-3 bg-white rounded shadow">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        duration: 1.5,
+                        delay: 0.5,
+                        ease: [0, 0.71, 0.2, 1.01]
+                    }}
+                    className="py-3 bg-white rounded shadow box">
                     <div className="p-4">
                         <div className='size-20 border rounded-full flex items-center justify-center mx-auto bg-secondary'>
                             <img className='size-14 mx-auto' src={support} alt="" />
@@ -25,8 +34,15 @@ const Benifit = () => {
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div className="py-4 bg-white rounded shadow">
+                </motion.div>
+                <motion.div initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        duration: 1.5,
+                        delay: 0.5,
+                        ease: [0, 0.71, 0.2, 1.01]
+                    }}
+                    className="py-3 bg-white rounded shadow box">
                     <div className="p-4">
                         <div className='size-20 border rounded-full flex items-center justify-center mx-auto bg-secondary'>
                             <img className='size-14 mx-auto' src={design} alt="" />
@@ -40,8 +56,15 @@ const Benifit = () => {
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div className="py-4 bg-white rounded shadow">
+                </motion.div>
+                <motion.div initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        duration: 1.5,
+                        delay: 0.5,
+                        ease: [0, 0.71, 0.2, 1.01]
+                    }}
+                    className="py-3 bg-white rounded shadow box">
                     <div className="p-4">
                         <div className='size-20 border rounded-full flex items-center justify-center mx-auto bg-secondary'>
                             <img className='size-14 mx-auto' src={freshiping} alt="" />
@@ -55,8 +78,15 @@ const Benifit = () => {
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div className="py-4 bg-white rounded shadow">
+                </motion.div>
+                <motion.div initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        duration: 1.5,
+                        delay: 0.5,
+                        ease: [0, 0.71, 0.2, 1.01]
+                    }}
+                    className="py-3 bg-white rounded shadow box">
                     <div className="p-4">
                         <div className='size-20 border rounded-full flex items-center justify-center mx-auto bg-secondary'>
                             <img className='size-14 mx-auto' src={satisfy} alt="" />
@@ -70,9 +100,9 @@ const Benifit = () => {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
-        </Section>
+        </Section >
     )
 }
 

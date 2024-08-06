@@ -1,10 +1,11 @@
 import { Button, Rate } from "antd";
 import { FaCartArrowDown, FaHeart } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { addToCart } from "../../redux/features/cartSlice/cartSlice";
 import { toast } from "sonner";
 
+import { motion } from "framer-motion";
 export type TProduct = {
     _id: string;
     image: string;
@@ -18,21 +19,19 @@ export type TProduct = {
     delete: boolean;
 }
 
-
 const FeaturedProduct = (product: TProduct) => {
     const state = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch()
 
-
     const handleAddtoCart = (product: TProduct) => {
-        if (state.find(item => item._id === product._id)) {
-            toast.error("This product allready added to your Cart", {
+        if (product.availableQuantity < 1) {
+            toast.error("This product is not available.", {
                 duration: 1000
             })
             return
         }
-        if (product.availableQuantity < 1) {
-            toast.error("This product is not available.", {
+        if (state.find(item => item?._id === product?._id)) {
+            toast.error("This product allready added to your Cart", {
                 duration: 1000
             })
             return
@@ -44,7 +43,13 @@ const FeaturedProduct = (product: TProduct) => {
     }
     // console.log(product)
     return (
-        <div className="relative overflow-hidden group h-full flex flex-col justify-between">
+        <motion.div initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 1.5,
+                delay: 0.5,
+                ease: [0, 0.71, 0.2, 1.01]
+            }} className="relative overflow-hidden group h-full flex flex-col justify-between">
             <img src={product?.image} className="w-full" alt={product.name} />
             <div className="py-4 border-t-0 p-3 md:p-4 rounded-b-md relative">
                 <div className="flex items-center justify-between">
@@ -77,7 +82,7 @@ const FeaturedProduct = (product: TProduct) => {
                     <Rate defaultValue={product.rating} allowClear={false} />
                 </div>
             </div>
-        </div >
+        </motion.div>
     )
 }
 

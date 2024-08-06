@@ -56,6 +56,7 @@ const FooterComponent: React.FC = () => {
                     </Col>
                 </Row>
                 <div className="text-center mt-6">
+                    <hr className='mt-2 py-5' />
                     <Text className="text-gray-400">© {new Date().getFullYear()} Electric Keyboard Shop. All rights reserved.</Text>
                 </div>
             </div>

@@ -60,14 +60,14 @@ const ProductDetails = () => {
                                 <p className='mt-4'>{items?.description}</p>
                             </div>
                             <div>
-                                <Button disabled={items?.availableQuantity < 1} className='w-full' onClick={() => handleAddtoCart(data)}>Add To Cart</Button>
+                                <Button disabled={items?.availableQuantity < 1} className='w-full' onClick={() => handleAddtoCart(data?.data)}>Add To Cart</Button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='border-t py-10'>
                     <h1 className='font-semibold md:text-lg mt-2'>More {items.brand} Brands</h1>
-                    <SimilarBrand brand={items?.brand} />
+                    <SimilarBrand brand={items?.brand} page="similar" />
                 </div>
             </Section>
         </main>

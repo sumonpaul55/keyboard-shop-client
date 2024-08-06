@@ -24,7 +24,8 @@ const Checkout = () => {
     if (!state.length) {
         return <h3 className='my-10 font-bold md:text-lg p-4 text-center'>You need to add some product first</h3>
     }
-
+    const discountAmount = Number((totalAmout * 5 / 100).toFixed(2))
+    // empty array for make product order
     const products: { productId: string; productQuantity: number }[] = []
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
@@ -33,9 +34,8 @@ const Checkout = () => {
         state?.map((items) => (
             products.push({ productId: items?._id, productQuantity: items?.quantity })
         ))
-
         const checkoutItem = {
-            name, email, phone, address, paymentMethod, products, totalAmout
+            name, email, phone, address, paymentMethod, products, totalAmout, discountAmount
         }
         const res = await addOrder(checkoutItem)
         if (res?.data?.data) {
@@ -43,7 +43,7 @@ const Checkout = () => {
             toast.success(`${res.data.message}`, {
                 duration: 2000
             })
-            navigate("/products")
+            navigate("/checkedout-successfull")
         }
         if (res?.error) {
             toast.error(`Something went wrong. Checkout not completed`)
@@ -53,6 +53,7 @@ const Checkout = () => {
     return (
         <section className='py-5 sm:py-8 md:py-16'>
             <div className="container mx-auto">
+                <h1>Checkout</h1>
                 <Form onFinish={onFinish} layout='vertical'>
                     <div className='flex flex-col lg:flex-row gap-4 md:gap-8'>
                         <div className='rounded p-3 border flex-1'>
@@ -83,24 +84,42 @@ const Checkout = () => {
                         </div>
                         <div className='rounded flex-1 border p-3'>
                             <h3 className='font-semibold md:text-lg'>Product Info</h3>
-                            <div className='flex flex-col justify-between h-[90%]'>
+                            <div className='flex flex-col justify-between'>
                                 <div className='mt-3'>
+                                    <div className='flex justify-between my-1 p-1 font-bold'>
+                                        <h4 className='w-[75%]'>Name</h4>
+                                        <p className='w-[10%] text-center'>Quantity</p>
+                                        <p className='w-[15%] text-end'>Total</p>
+                                    </div>
                                     {
                                         state?.map((items, idx) => (
                                             <div key={idx}>
-
-                                                <div className='flex justify-between border my-1 p-1 border-gray-200'>
-                                                    <h4>{idx + 1}. {items.name}</h4>
-                                                    <p>৳ {items.price * items.quantity}</p>
+                                                <div className='flex justify-between border-t my-1 p-1 border-teal-100 gap-4 md:gap-8'>
+                                                    <h4 className='w-[75%]'>{idx + 1}. {items.name}</h4>
+                                                    <p className='w-[10%] text-end mr-3'>{items?.quantity}</p>
+                                                    <p className='w-[15%] text-end font-semibold'>৳ {items.price * items.quantity}</p>
                                                 </div>
                                             </div>
                                         ))
                                     }
 
                                 </div>
-                                <div className='font-bold md:text-lg'>
+                                <div className='font-medium md:text-lg mt-5'>
                                     <hr />
-                                    <h1 className='mt-4 flex items-center justify-between'>Total = <p>৳ {totalAmout}</p></h1>
+                                    <h1 className='mt-2 flex items-center justify-between md:text-lg'>Total = <p>{totalAmout.toFixed(2)}</p></h1>
+                                    <div className="flex my-2 justify-between">
+                                        <h1 className="">Discount <span className='text-base font-normal'>(5%)</span></h1>
+                                        <h3 className="font-medium md:text-lg">({discountAmount})</h3>
+                                    </div>
+                                    <div className="flex my-2 justify-between">
+                                        <h1 className="">Delivery Charge</h1>
+                                        <h3 className="">0.00</h3>
+                                    </div>
+                                    <hr />
+                                    <div className="flex my-2 justify-between">
+                                        <h1 className="text-lg sm:text-xl font-semibold">Grand Total</h1>
+                                        <h3 className="font-bold sm:text-lg md:text-xl">৳ {Math.floor((totalAmout - (totalAmout * 5 / 100))).toFixed(2)}</h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -121,15 +121,7 @@ const Cart = () => {
                                             <h1 className="font-bold text-lg sm:text-xl">Total</h1>
                                             <h3 className="font-semibold sm:text-lg md:text-xl">{totalAmount}</h3>
                                         </div>
-                                        <div className="flex my-2 justify-between">
-                                            <h1 className="text-lg sm:text-xl">Discount</h1>
-                                            <h3 className="font-bold sm:text-lg md:text-xl lg:text-2xl">0</h3>
-                                        </div>
-                                        <hr />
-                                        <div className="flex my-2 justify-between">
-                                            <h1 className="text-lg sm:text-xl font-semibold">Grand Total</h1>
-                                            <h3 className="font-bold sm:text-lg md:text-xl lg:text-2xl">{totalAmount}</h3>
-                                        </div>
+
                                         <div className="text-center mt-5">
                                             <Link to="/checkout" state={totalAmount} className="bg-primary text-white py-2 px-3 rounded-md">
                                                 Procced To Checkout
