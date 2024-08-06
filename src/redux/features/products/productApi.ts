@@ -77,6 +77,19 @@ export const productApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.products],
     }),
+    deleteProduct: builder.query({
+      query: (id) => {
+        const params = new URLSearchParams();
+        if (id) {
+          params.append("id", id);
+        }
+        return {
+          url: "/products",
+          method: "DELETE",
+          params,
+        };
+      },
+    }),
   }),
 });
 
