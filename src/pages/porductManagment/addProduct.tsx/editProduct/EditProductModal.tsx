@@ -90,7 +90,6 @@ const EditProduct = ({ product }: any) => {
                         <Form.Item label="Price" name="price" initialValue={product.price} style={{ width: "100%" }}>
                             <InputNumber value={product.price} />
                         </Form.Item>
-
                         <Form.Item label="Description" name="description" initialValue={product.description} style={{ width: "100%" }}>
                             <TextArea value={product.description} />
                         </Form.Item>

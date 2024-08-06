@@ -75,6 +75,7 @@ export const productApi = baseApi.injectEndpoints({
           body: productInfo,
         };
       },
+      invalidatesTags: [tagTypes.products],
     }),
   }),
 });
