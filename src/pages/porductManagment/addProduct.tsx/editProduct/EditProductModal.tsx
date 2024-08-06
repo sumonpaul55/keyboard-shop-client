@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
-import { Button, Col, Flex, Form, Input, InputNumber, Modal, Rate, Row, Space } from 'antd';
+import { useState } from 'react';
+import { Button, Col, Form, Input, InputNumber, Modal, Rate, Space } from 'antd';
 import type { FormProps, } from 'antd';
-import InputItems from '../../../../components/formInput/InputItems';
 import { FaEdit } from 'react-icons/fa';
 import TextArea from 'antd/es/input/TextArea';
-// type TProduct = {
-//     availableQuantity: number;
-//     brand: string;
-//     delete: boolean;
-//     description: string;
-//     image: string;
-//     key: string;
-//     name: string;
-//     no: number;
-//     price: number;
-//     rating: number;
-//     _id: string;
-// };
+import { useEditProductMutation } from '../../../../redux/features/products/productApi';
+import { toast } from 'sonner';
+export type TEditProduct = {
+    image: string;
+    name: string;
+    brand: string;
+    availableQuantity: number;
+    price: number;
+    rating: number;
+    description: string;
+}
 
 const EditProduct = ({ product }: any) => {
-
     const [open, setOpen] = useState(false);
     const showModal = () => {
         setOpen(true);
@@ -27,20 +23,28 @@ const EditProduct = ({ product }: any) => {
     const handleOk = () => {
         setOpen(false);
     };
-
     const handleCancel = () => {
         setOpen(false);
     };
 
+
+    const [editProduct] = useEditProductMutation();
+
+
     const desc = ['bad', 'medium', 'normal', 'good', 'wonderful'];
     const [rating, setRateing] = useState(product.rating);
 
-    const onFinish: FormProps['onFinish'] = (values) => {
-        const editProduct = { ...values, rating }
-        console.log(editProduct)
+    const onFinish: FormProps['onFinish'] = async (values) => {
+
+        const editAbleProduct = { ...values, rating }
+        const res = await editProduct({ id: product._id, editAbleProduct })
+        if (res.data.success) {
+            toast.success(res?.data?.message)
+            setOpen(false)
+        } else {
+            toast.error("Somethisng Went Wrong")
+        }
     }
-
-
 
     return (
         <>
@@ -87,7 +91,7 @@ const EditProduct = ({ product }: any) => {
                             <InputNumber value={product.price} />
                         </Form.Item>
 
-                        <Form.Item label="Description" name="description" initialValue={product.price} style={{ width: "100%" }}>
+                        <Form.Item label="Description" name="description" initialValue={product.description} style={{ width: "100%" }}>
                             <TextArea value={product.description} />
                         </Form.Item>
 

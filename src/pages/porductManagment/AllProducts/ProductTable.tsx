@@ -80,7 +80,7 @@ const ProductTAble: React.FC = () => {
     return (
         <div>
             <h1 className='font-bold md:text-lg'>All Products</h1>
-            <Divider />
+            <Divider className='py-0 my-3' />
             <Table
                 // rowSelection={{
                 //     ...rowSelection,

@@ -67,7 +67,17 @@ export const productApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.products],
     }),
+    editProduct: builder.mutation({
+      query: (productInfo) => {
+        return {
+          url: "/products/edit-product",
+          method: "PUT",
+          body: productInfo,
+        };
+      },
+    }),
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery } = productApi;
+export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery, useEditProductMutation } =
+  productApi;
