@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import Confetti from 'react-confetti';
+import { Link } from 'react-router-dom';
 import { useWindowSize } from 'react-use';
 
 const SuccessPage = () => {
@@ -35,12 +36,12 @@ const SuccessPage = () => {
                     transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
                     className="mt-8"
                 >
-                    <button
+                    <Link to="/products"
                         className="px-6 py-3 bg-pink-500 text-white font-bold rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300"
                         onClick={() => window.location.href = '/'}
                     >
                         Continue Shopping
-                    </button>
+                    </Link>
                 </motion.div>
             </motion.div>
         </div>
