@@ -77,21 +77,27 @@ export const productApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.products],
     }),
-    deleteProduct: builder.query({
+    deleteProduct: builder.mutation({
       query: (id) => {
-        const params = new URLSearchParams();
-        if (id) {
-          params.append("id", id);
-        }
+        // const params = new URLSearchParams();
+        // if (id) {
+        //   params.append("id", id);
+        // }
         return {
-          url: "/products",
+          url: `/products/${id}`,
           method: "DELETE",
-          params,
         };
       },
+      invalidatesTags: [tagTypes.products],
     }),
   }),
 });
 
-export const { useCreateProductMutation, useGetAllProductQuery, useGetProductFieldQuery, useGetProductByIdQuery, useEditProductMutation } =
-  productApi;
+export const {
+  useCreateProductMutation,
+  useGetAllProductQuery,
+  useGetProductFieldQuery,
+  useGetProductByIdQuery,
+  useEditProductMutation,
+  useDeleteProductMutation,
+} = productApi;

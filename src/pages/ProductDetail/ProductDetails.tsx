@@ -5,15 +5,35 @@ import Loading from '../commonPage/Loading'
 import Section from '../../layouts/Section'
 import { Button, Image, Rate } from 'antd'
 import SimilarBrand from './SimilarBrand'
+import { useAppDispatch, useAppSelector } from '../../redux/hook'
+import { toast } from 'sonner'
+import { addToCart } from '../../redux/features/cartSlice/cartSlice'
+import { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
 
 const ProductDetails = () => {
     const id = useParams()
     const { data, isLoading } = useGetProductByIdQuery(id)
     const items = data?.data
+    const dispatch = useAppDispatch();
+    const state = useAppSelector((state) => state.cart.cart);
 
     // handle add to cart
-    const handleAddtoCart = (productId: any) => {
-        return productId
+    const handleAddtoCart = (product: TProduct) => {
+        if (state.find(item => item._id === product._id)) {
+            toast.error("This product allready added to your Cart", {
+                duration: 1000
+            })
+            return
+        } else if (product.availableQuantity < 1) {
+            toast.error("This product is not available.", {
+                duration: 1000
+            })
+            return
+        }
+        else {
+            dispatch(addToCart(product))
+            toast.success("Product added to your cart")
+        }
     }
     if (isLoading) {
         return <Loading />
@@ -40,7 +60,7 @@ const ProductDetails = () => {
                                 <p className='mt-4'>{items?.description}</p>
                             </div>
                             <div>
-                                <Button disabled={items?.availableQuantity < 1} className='w-full' onClick={() => handleAddtoCart(id)}>Add To Cart</Button>
+                                <Button disabled={items?.availableQuantity < 1} className='w-full' onClick={() => handleAddtoCart(data)}>Add To Cart</Button>
                             </div>
                         </div>
                     </div>

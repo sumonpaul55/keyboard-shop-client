@@ -1,9 +1,11 @@
 import React, { } from 'react';
 import { Button, Divider, Image, Table } from 'antd';
 import type { TableColumnsType } from 'antd';
-import { useGetAllProductQuery } from '../../../redux/features/products/productApi';
+import { useDeleteProductMutation, useGetAllProductQuery } from '../../../redux/features/products/productApi';
 import { TbTrash } from 'react-icons/tb';
 import EditProduct from '../addProduct.tsx/editProduct/EditProductModal';
+import { toast } from 'sonner';
+import Swal from 'sweetalert2';
 
 export interface DataType {
     key: React.Key;
@@ -26,7 +28,40 @@ const ProductTAble: React.FC = () => {
         no: index + 1
     }));
 
+    // handle delete product
+    const [deleteProduct] = useDeleteProductMutation()
 
+    const handleDelete = (id: string) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await deleteProduct(id)
+                if (res.data.success) {
+                    toast.success(res.data.message)
+                } else {
+                    toast.error("Something went wrong")
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+    }
 
     const columns: TableColumnsType<DataType> = [
         {
@@ -64,8 +99,7 @@ const ProductTAble: React.FC = () => {
             title: 'Action',
             render: (transformedProducts) => (<div className='flex gap-3'>
                 <EditProduct product={transformedProducts} />
-                <Button className='w-fit p-1 h-auto border-0 text-red-600'><TbTrash size={20} /></Button>
-
+                <Button onClick={() => handleDelete(transformedProducts._id)} className='w-fit p-1 h-auto border-0 text-red-600'><TbTrash size={20} /></Button>
             </div>)
         },
     ];

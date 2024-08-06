@@ -27,9 +27,7 @@ const EditProduct = ({ product }: any) => {
         setOpen(false);
     };
 
-
     const [editProduct] = useEditProductMutation();
-
 
     const desc = ['bad', 'medium', 'normal', 'good', 'wonderful'];
     const [rating, setRateing] = useState(product.rating);
@@ -49,18 +47,15 @@ const EditProduct = ({ product }: any) => {
     return (
         <>
             <Space>
-                <Button type="primary" onClick={showModal}>
-                    <FaEdit size={15} />
+                <Button className='border-0 text-primary' style={{ padding: 0, background: "none" }} onClick={showModal}>
+                    <FaEdit size={20} />
                 </Button>
-
             </Space>
             <Modal
                 open={open}
                 title="Title"
                 onOk={handleOk}
-                onCancel={handleCancel}
-            >
-
+                onCancel={handleCancel}>
                 <div className='max-w-[80%] mx-auto shadow rounded p-6 bg-white'>
                     <Form
                         name="basic"
