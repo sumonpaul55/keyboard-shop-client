@@ -7,6 +7,6 @@ export const useGetBrand = (fields: string) => {
         return <Loading />
     }
     return {
-        brandLoading: isLoading, brands: data?.data
+        brandLoading: isLoading, brands: data?.data?.result
     }
 } 

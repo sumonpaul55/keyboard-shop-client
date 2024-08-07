@@ -73,7 +73,7 @@ export const NavBar = () => {
                             <line x1="4" x2="20" y1="18" y2="18" />
                         </svg>
                         {dropDownState && (
-                            <ul className="z-10 gap-2 p-5 md:p-0 space-y-3 md:space-y-0 bg-[#393E46] absolute right-0 top-11 flex w-[200px] flex-col rounded-lg text-base">
+                            <ul className="z-10 text-white gap-2 p-5 md:p-0 space-y-3 md:space-y-0 bg-[#393E46] absolute right-0 top-11 flex w-[200px] flex-col rounded-lg text-base">
                                 {navBarItems}
                             </ul>
                         )}

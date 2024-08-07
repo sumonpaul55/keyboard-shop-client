@@ -13,12 +13,7 @@ const SuccessPage = () => {
             <Confetti width={width} height={height} />
 
             {/* Success Message Box */}
-            <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="bg-white p-8 rounded-lg shadow-lg text-center"
-            >
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
                 <motion.div
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -43,7 +38,7 @@ const SuccessPage = () => {
                         Continue Shopping
                     </Link>
                 </motion.div>
-            </motion.div>
+            </div>
         </div>
     );
 };

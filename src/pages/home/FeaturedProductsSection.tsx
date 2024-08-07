@@ -21,7 +21,7 @@ const FeaturedProductsSection = () => {
                 {/* display products */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 mt-10">
                     {
-                        data?.data.map((items: TProduct, idx: number) =>
+                        data?.data?.result.map((items: TProduct, idx: number) =>
                             <div key={idx} className="overflow-hidden rounded-t-md bg-secondary rounded-md border">
                                 <FeaturedProduct {...items} />
                             </div>

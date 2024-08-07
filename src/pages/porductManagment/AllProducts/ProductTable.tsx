@@ -22,7 +22,7 @@ export interface DataType {
 const ProductTAble: React.FC = () => {
     const { data: products, isLoading } = useGetAllProductQuery({})
 
-    const transformedProducts = products?.data?.map((product: any, index: number) => ({
+    const transformedProducts = products?.data?.result.map((product: any, index: number) => ({
         ...product,
         key: product._id,  // Assuming 'id' is the unique identifier
         no: index + 1

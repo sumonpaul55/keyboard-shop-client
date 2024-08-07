@@ -2,18 +2,20 @@ import { useState } from 'react'
 import { useGetAllProductQuery } from '../../redux/features/products/productApi'
 import Loading from '../commonPage/Loading'
 import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
-import { Button, Input, Select, SelectProps } from 'antd'
+import { Button, Input, Pagination, Select, SelectProps } from 'antd'
 import { useGetBrand } from '../../useHooks/useGetBrand'
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion";
 
 const ProductPage = () => {
     const { brandLoading, brands }: any = useGetBrand("brand")
     const [search, setSearch] = useState<any | undefined>(undefined)
-    const [limit] = useState(12);
+    const [limit] = useState(9);
     const [brand, setBrand] = useState({})
     const [range, setRange] = useState<string | undefined>()
     const [page, setPage] = useState(1);
     const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand, page: page })
+
     // brnads woriking on
     if (isLoading) {
         return <Loading />
@@ -28,9 +30,10 @@ const ProductPage = () => {
         brandsArray = Array.from(uniqBrnd)
     }
     const priceRange = [
-        "0-300",
-        "300-800",
-        "800-1000"
+        "0-1000",
+        "1000-2000",
+        "2000-3000",
+        "3000-4000",
     ]
     const options: SelectProps["options"] = [];
     brandsArray?.map((bname) => {
@@ -43,11 +46,7 @@ const ProductPage = () => {
         setRange(undefined)
     }
     // page number
-    const generatedPage = Math.ceil((data?.data.length / 12) + 1)
 
-    const handlePageClick = (pageNumber: any) => {
-        setPage(pageNumber + 1)
-    }
 
     return (
         <main className='p-0 md:p-2'>
@@ -89,11 +88,14 @@ const ProductPage = () => {
                             </div>
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8 p-2 ps-0'>
                                 {
-                                    data?.data.length ?
-                                        data?.data?.map((items: TProduct, idx: number) => (
-                                            <div key={idx} className='overflow-hidden rounded-t-md bg-secondary rounded-md border'>
+                                    data?.data?.result?.length ?
+                                        data?.data?.result.map((items: TProduct, idx: number) => (
+                                            <motion.div
+                                                initial={{ scale: 0 }}
+                                                animate={{ scale: 1 }}
+                                                transition={{ duration: 0.5, ease: "easeOut" }} key={idx} className='overflow-hidden rounded-t-md bg-secondary rounded-md border'>
                                                 <FeaturedProduct {...items} />
-                                            </div>
+                                            </motion.div>
                                         ))
                                         :
                                         <>
@@ -107,8 +109,7 @@ const ProductPage = () => {
                                 }
                             </div>
                             <div className='pt-10 text-center flex items-center justify-center'>
-                                <Button onClick={() => setPage(page - 1)} disabled={generatedPage > page}>Prev</Button>
-
+                                {/* <Button onClick={() => setPage(page - 1)} disabled={generatedPage > page}>Prev</Button>
                                 {Array.from({ length: generatedPage }, (_, index) => {
                                     return <Button
                                         key={index}
@@ -118,7 +119,8 @@ const ProductPage = () => {
                                         {index + 1}
                                     </Button>
                                 })}
-                                <Button disabled={generatedPage === page} onClick={() => setPage(page + 1)}>Next</Button>
+                                <Button disabled={generatedPage === page} onClick={() => setPage(page + 1)}>Next</Button> */}
+                                <Pagination current={page} total={data?.data?.totalDocument} pageSize={limit} onChange={(page) => setPage(page)} />
                             </div>
                         </div>
                     </div>

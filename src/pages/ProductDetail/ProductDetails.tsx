@@ -67,7 +67,7 @@ const ProductDetails = () => {
                 </div>
                 <div className='border-t py-10'>
                     <h1 className='font-semibold md:text-lg mt-2'>More {items.brand} Brands</h1>
-                    <SimilarBrand brand={items?.brand} page="similar" />
+                    <SimilarBrand brand={items?.brand} />
                 </div>
             </Section>
         </main>

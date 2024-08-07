@@ -3,6 +3,14 @@ import Section from "../../layouts/Section"
 const About = () => {
     return (
         <Section className="min-h-screen">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px">
+                <div>
+                    <h2 className="font-bold text-lg md:text-2xl lg:text-3xl">About KeyHub</h2>
+                </div>
+                <div>
+                    <img src="" alt="" />
+                </div>
+            </div>
             <div className="container mx-auto p-8 my-10 rounded-lg shadow-md">
                 <h2 className="text-3xl font-bold text-center mb-8 text-primary">About Us</h2>
                 <p className="text-lg leading-relaxed mb-6">

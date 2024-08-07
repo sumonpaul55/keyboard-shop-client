@@ -29,6 +29,9 @@ export const productApi = baseApi.injectEndpoints({
         if (params?.brand && params?.brand.length > 0) {
           query.append("brand", params?.brand);
         }
+        if (params?.range) {
+          query.append("range", params?.range);
+        }
         return {
           url: "/products",
           method: "GET",
