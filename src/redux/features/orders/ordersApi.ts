@@ -1,4 +1,5 @@
 import { baseApi } from "../../api/baseApi";
+import { tagTypes } from "../../Types";
 
 export const orderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -10,6 +11,7 @@ export const orderApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: [tagTypes.products],
     }),
   }),
 });

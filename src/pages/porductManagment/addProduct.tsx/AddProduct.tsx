@@ -23,7 +23,11 @@ const AddProduct: React.FC = () => {
 
     const onFinish: FormProps['onFinish'] = (values) => {
         toast.loading("Product Uploading", { id: "productImg" })
-        const { description, name, price, availableQuantity, brand }: any = values
+        let brand = values.brand.charAt(0).toUpperCase() + values.brand.slice(1)
+        let name = values.name.charAt(0).toUpperCase() + values.name.slice(1)
+        const { description, price, availableQuantity }: any = values
+
+
         const formData = new FormData();
         fileList.forEach((file) => {
             formData.append('image', file as FileType);

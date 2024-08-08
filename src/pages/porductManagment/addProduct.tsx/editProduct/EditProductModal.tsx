@@ -67,25 +67,25 @@ const EditProduct = ({ product }: any) => {
                         // onFinishFailed={onFinishFailed}
                         autoComplete="off">
 
-                        <Form.Item name="name" label="Name" initialValue={product.name}>
+                        <Form.Item name="name" label="Name" initialValue={product.name} rules={[{ required: true, message: "Name is required" }]}>
                             <Input value={product.name} />
                         </Form.Item>
-                        <Form.Item name="image" label="Image" initialValue={product.image}>
+                        <Form.Item name="image" label="Image" initialValue={product.image} rules={[{ required: true, message: "image is required" }]}>
                             <Input value={product?.image} />
                         </Form.Item>
 
-                        <Form.Item label="Brand" name="brand" initialValue={product.brand}>
+                        <Form.Item label="Brand" name="brand" initialValue={product.brand} rules={[{ required: true, message: "Brand is required" }]}>
                             <Input value={product.brand} />
                         </Form.Item>
 
-                        <Form.Item label="Quantity" name="availableQuantity" initialValue={product.availableQuantity} style={{ width: "100%" }} >
+                        <Form.Item label="Quantity" name="availableQuantity" initialValue={product.availableQuantity} style={{ width: "100%" }} rules={[{ required: true, message: "Quantity is required" }]}>
                             <InputNumber value={product.availableQuantity} />
                         </Form.Item>
 
-                        <Form.Item label="Price" name="price" initialValue={product.price} style={{ width: "100%" }}>
+                        <Form.Item label="Price" name="price" initialValue={product.price} style={{ width: "100%" }} rules={[{ required: true, message: "Price is required" }]}>
                             <InputNumber value={product.price} />
                         </Form.Item>
-                        <Form.Item label="Description" name="description" initialValue={product.description} style={{ width: "100%" }}>
+                        <Form.Item label="Description" name="description" initialValue={product.description} style={{ width: "100%" }} rules={[{ required: true, message: "Description is required" }]}>
                             <TextArea value={product.description} />
                         </Form.Item>
 
@@ -93,9 +93,6 @@ const EditProduct = ({ product }: any) => {
                             <Rate tooltips={desc} onChange={setRateing} value={rating} style={{ color: '#F4D100' }} />
                             {rating ? <span>{desc[rating - 1]}</span> : null}
                         </Form.Item>
-
-
-
 
                         <Col span="8" style={{ margin: "auto", marginTop: "50px" }}>
                             <Button style={{ margin: "auto", width: "100%" }} type="primary" htmlType="submit">Submit</Button>

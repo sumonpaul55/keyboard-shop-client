@@ -14,7 +14,9 @@ const ProductPage = () => {
     const [brand, setBrand] = useState({})
     const [range, setRange] = useState<string | undefined>()
     const [page, setPage] = useState(1);
+    const [selectItem, setSelectItem] = useState([])
     const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand, page: page })
+
     // const [totalDocument, setTotalDocument] = useState(data?.data?.totalDocument)
 
     // brnads woriking on
@@ -25,7 +27,7 @@ const ProductPage = () => {
     let brandsArray;
     if (!brandLoading) {
         brands?.forEach((items: any) => {
-            onlyBrands.push(items.brand)
+            onlyBrands.push(items.brand.trim())
         })
         const uniqBrnd = new Set(onlyBrands)
         brandsArray = Array.from(uniqBrnd)
@@ -40,11 +42,19 @@ const ProductPage = () => {
     brandsArray?.map((bname) => {
         return options.push({ value: bname, label: bname })
     })
+
+    // handle select change
+    const handleChange = (value: any) => {
+        setBrand(value)
+        setSelectItem(value)
+    }
     // handle reset
     const handleReset = () => {
         setBrand({})
         setSearch(undefined)
         setRange(undefined)
+        setSelectItem([])
+
     }
     // console.log(totalDocument)
     // page number
@@ -60,9 +70,11 @@ const ProductPage = () => {
                                 <h2 className='text-sm md:text-lg font-bold sm:text-base'>Pick Your Required Brand</h2>
                                 <div className='flex flex-col gap-2 px-4 md:px-5 mt-5 font-bold md:text-'>
                                     <Select
-                                        onChange={(value) => { setBrand(`${value}`) }}
+                                        onChange={(value) => handleChange(value)}
                                         options={options}
                                         mode='multiple'
+                                        placeholder="Select Your Required Brand"
+                                        value={selectItem}
                                     />
                                 </div>
                             </div>
