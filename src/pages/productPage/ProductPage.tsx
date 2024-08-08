@@ -51,7 +51,7 @@ const ProductPage = () => {
     // handle reset
     const handleReset = () => {
         setBrand({})
-        setSearch()
+        setSearch("")
         setRange(undefined)
         setSelectItem([])
 
