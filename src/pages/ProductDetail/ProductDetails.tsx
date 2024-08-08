@@ -41,7 +41,7 @@ const ProductDetails = () => {
     return (
         <main>
             <Section className='product-details'>
-                <div className='pb-32'>
+                <div className='md:pb-20 -mt-10'>
                     <h1 className='font-bold text-xl md:text-2xl lg:text-4xl mb-4 text-primary'>{items.name}</h1>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10'>
                         <div className=''>

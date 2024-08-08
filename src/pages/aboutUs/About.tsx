@@ -3,6 +3,7 @@ import memeber1 from "../../../src/assets/member (1).jpg"
 import memeber2 from "../../../src/assets/member (2).jpg"
 import memeber3 from "../../../src/assets/member (3).jpg"
 import keyboard from "../../../src/assets/keyboard.jpg"
+import { Link } from 'react-router-dom';
 const About = () => {
     return (
         <div className="min-h-screen bg-gradient-to-r from-slate-300 to-white">
@@ -138,12 +139,11 @@ const About = () => {
                         <p className="md:text-lg max-w-2xl mx-auto mb-10">
                             Become a part of our growing community of keyboard enthusiasts. Explore our shop and find the perfect keyboard for you.
                         </p>
-                        <a
-                            href="/shop"
+                        <Link to='/products'
                             className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:bg-gray-100 transition duration-300"
                         >
                             Explore Our Shop
-                        </a>
+                        </Link>
                     </motion.div>
                 </div>
             </section>

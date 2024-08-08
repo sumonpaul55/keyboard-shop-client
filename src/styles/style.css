@@ -4,3 +4,11 @@
 .product-details .ant-image {
     width: 100% !important;
 }
+
+@media (max-width: 600px) {
+    .ant-rate-star.ant-rate-star-full svg {
+        width: 15px;
+        height: 15px;
+        margin: -4px;
+      }
+}

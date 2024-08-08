@@ -74,7 +74,7 @@ const ProductPage = () => {
                                     }
                                 </div>
                             </div>
-                            <div className='md:p-4 mx-5'>
+                            <div className='md:p-4 mt-3 mx-5'>
                                 <Button style={{ width: "100%" }} className='bg-primary text-white' onClick={handleReset}>
                                     Reset filter
                                 </Button>
@@ -87,7 +87,7 @@ const ProductPage = () => {
                                     <Input style={{ maxWidth: "100%", padding: '5px' }} placeholder='Search by name or brand' onChange={(e) => setSearch(e.target.value)} />
                                 </div>
                             </div>
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8 p-2 ps-0'>
+                            <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8 p-2 ps-0'>
                                 {
                                     data?.data?.result?.length ?
                                         data?.data?.result.map((items: TProduct, idx: number) => (

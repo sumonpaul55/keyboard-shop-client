@@ -7,7 +7,7 @@ const SimilarBrand = (brand: any) => {
     const { data } = useGetAllProductQuery(brand)
     return (
         <div className='h-full'>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10'>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-10'>
                 {
                     data?.data?.result.map((items: TProduct) => (
                         <div className='rounded-md border overflow-hidden'>
