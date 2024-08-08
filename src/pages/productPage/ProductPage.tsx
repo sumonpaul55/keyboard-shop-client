@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 const ProductPage = () => {
     const { brandLoading, brands }: any = useGetBrand("brand")
-    const [search, setSearch] = useState<any | undefined>(undefined)
+    const [search, setSearch] = useState<any | undefined>()
     const [limit] = useState(9);
     const [brand, setBrand] = useState({})
     const [range, setRange] = useState<string | undefined>()
@@ -51,7 +51,7 @@ const ProductPage = () => {
     // handle reset
     const handleReset = () => {
         setBrand({})
-        setSearch(undefined)
+        setSearch()
         setRange(undefined)
         setSelectItem([])
 
@@ -96,7 +96,7 @@ const ProductPage = () => {
                             <div className='md:py-6 bg-slate-700 mb-4 p-1'>
                                 <h2 className='text-sm sm:text-base md:text-xl text-white text-center font-bold'>Search Product</h2>
                                 <div className='text-center mt-0 md:mt-4 md:w-1/2 mx-auto'>
-                                    <Input style={{ maxWidth: "100%", padding: '5px' }} placeholder='Search by name or brand' onChange={(e) => setSearch(e.target.value)} />
+                                    <Input style={{ maxWidth: "100%", padding: '5px' }} placeholder='Search by name or brand' onChange={(e) => setSearch(e.target.value)} value={search} />
                                 </div>
                             </div>
                             <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-8 p-2 ps-0'>
