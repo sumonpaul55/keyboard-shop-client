@@ -34,9 +34,9 @@ const BrandProducts = () => {
             <h1 className="sm:text-lg md:text-xl lg:text-2xl text-center font-bold">All products of <span className="text-primary">{brand.brand}</span> Brands</h1>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 lg:gap-12">
                 {
-                    brandData?.length > 0 ?
+                    brandData?.result.length > 0 ?
 
-                        brandData?.map((items: TProduct, idx: number) => (
+                        brandData?.result?.map((items: TProduct, idx: number) => (
                             <motion.div key={idx} className="border box shadow" whileHover={{ scale: [null, 1, 1.08] }}
                                 transition={{ duration: 0.3 }}>
                                 <div className="relative">

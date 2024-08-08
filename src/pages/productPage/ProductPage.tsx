@@ -15,6 +15,7 @@ const ProductPage = () => {
     const [range, setRange] = useState<string | undefined>()
     const [page, setPage] = useState(1);
     const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand, page: page })
+    // const [totalDocument, setTotalDocument] = useState(data?.data?.totalDocument)
 
     // brnads woriking on
     if (isLoading) {
@@ -45,8 +46,8 @@ const ProductPage = () => {
         setSearch(undefined)
         setRange(undefined)
     }
+    // console.log(totalDocument)
     // page number
-
 
     return (
         <main className='p-0 md:p-2'>
@@ -59,7 +60,7 @@ const ProductPage = () => {
                                 <h2 className='text-sm md:text-lg font-bold sm:text-base'>Pick Your Required Brand</h2>
                                 <div className='flex flex-col gap-2 px-4 md:px-5 mt-5 font-bold md:text-'>
                                     <Select
-                                        onChange={(value) => setBrand(`${value}`)}
+                                        onChange={(value) => { setBrand(`${value}`) }}
                                         options={options}
                                         mode='multiple'
                                     />
@@ -69,7 +70,7 @@ const ProductPage = () => {
                                 <h2 className='md:text-lg font-bold text-xs sm:text-base'>Price Range</h2>
                                 <div className='flex flex-col gap-2 px-4 md:px-5 mt-5 font-bold md:text-'>
                                     {
-                                        priceRange?.map((items, idx) => (<Button onClick={() => setRange(items)} key={idx} className=''>{items}</Button>))
+                                        priceRange?.map((items, idx) => (<Button onClick={() => { setRange(items) }} key={idx} className=''>{items}</Button>))
                                     }
                                 </div>
                             </div>
@@ -120,6 +121,11 @@ const ProductPage = () => {
                                     </Button>
                                 })}
                                 <Button disabled={generatedPage === page} onClick={() => setPage(page + 1)}>Next</Button> */}
+                                {/* {
+                                    totalDocument > limit || totalDocument === undefined ?
+                                        <Pagination current={page} total={totalDocument} pageSize={limit} onChange={(page) => setPage(page)} />
+                                        : null
+                                } */}
                                 <Pagination current={page} total={data?.data?.totalDocument} pageSize={limit} onChange={(page) => setPage(page)} />
                             </div>
                         </div>
@@ -127,7 +133,6 @@ const ProductPage = () => {
                 </div>
             </section>
         </main >
-
     )
 }
 

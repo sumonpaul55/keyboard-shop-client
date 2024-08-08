@@ -50,17 +50,6 @@ const ProductTAble: React.FC = () => {
                 }
             }
         });
-
-
-
-
-
-
-
-
-
-
-
     }
 
     const columns: TableColumnsType<DataType> = [
@@ -93,7 +82,7 @@ const ProductTAble: React.FC = () => {
         {
             title: 'Price',
             dataIndex: 'price',
-            render: (p) => <h4 className='font-bold text-xs sm:text-base text-center'>৳ {p}</h4>
+            render: (p) => <h4 className='font-bold text-xs sm:text-sm whitespace-nowrap lg:text-base text-center'>৳ {p}</h4>
         },
         {
             title: 'Action',
