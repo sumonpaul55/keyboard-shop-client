@@ -4,7 +4,6 @@ import Loading from '../commonPage/Loading'
 import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/FeaturedProduct'
 import { Button, Input, Pagination, Select, SelectProps } from 'antd'
 import { useGetBrand } from '../../useHooks/useGetBrand'
-import { Link } from 'react-router-dom'
 import { motion } from "framer-motion";
 
 const ProductPage = () => {
@@ -78,7 +77,7 @@ const ProductPage = () => {
                                     />
                                 </div>
                             </div>
-                            <div className='md:p-4 mt-10'>
+                            <div className='md:p-4 mt-40'>
                                 <h2 className='md:text-lg font-bold text-xs sm:text-base'>Price Range</h2>
                                 <div className='flex flex-col gap-2 px-4 md:px-5 mt-5 font-bold md:text-'>
                                     {
@@ -114,31 +113,16 @@ const ProductPage = () => {
                                         <>
                                             <div className='text-center'>
                                                 <h3 className='mt-4 font-bold text-center text-xl mb-5'>Product Not found</h3>
-                                                <Button>
-                                                    <Link to="/product-manage/add-product" className=''>Add Product</Link>
-                                                </Button>
+
                                             </div>
                                         </>
                                 }
                             </div>
                             <div className='pt-10 text-center flex items-center justify-center'>
-                                {/* <Button onClick={() => setPage(page - 1)} disabled={generatedPage > page}>Prev</Button>
-                                {Array.from({ length: generatedPage }, (_, index) => {
-                                    return <Button
-                                        key={index}
-                                        onClick={() => handlePageClick(index)}
-                                        className={`px-4 py-2 mx-1 ${generatedPage === index ? 'bg-red-400 text-white' : 'bg-blue-500 text-white'
-                                            } rounded hover:bg-blue-700 focus:outline-none`}>
-                                        {index + 1}
-                                    </Button>
-                                })}
-                                <Button disabled={generatedPage === page} onClick={() => setPage(page + 1)}>Next</Button> */}
-                                {/* {
-                                    totalDocument > limit || totalDocument === undefined ?
-                                        <Pagination current={page} total={totalDocument} pageSize={limit} onChange={(page) => setPage(page)} />
-                                        : null
-                                } */}
-                                <Pagination current={page} total={data?.data?.totalDocument} pageSize={limit} onChange={(page) => setPage(page)} />
+                                {
+                                    data?.data?.result?.length > 0 &&
+                                    <Pagination current={page} total={data?.data?.totalDocument} pageSize={limit} onChange={(page) => setPage(page)} />
+                                }
                             </div>
                         </div>
                     </div>
