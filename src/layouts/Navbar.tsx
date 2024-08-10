@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FaCartPlus } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../redux/hook';
-
+import logo from '../../src/assets/kyehublogo.png'
 export const NavBar = () => {
     const state = useAppSelector((state) => state.cart.cart);
 
@@ -61,7 +61,9 @@ export const NavBar = () => {
             <div className="container mx-auto">
                 <nav className="flex w-full items-center justify-between">
                     <div className="cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
-                        <Link to={"/"}> <h2 className='font-bolder'>Key<span className='text-primary'>H</span>ub</h2></Link>
+                        <Link to={"/"}>
+                            <img src={logo} alt="keyhub" className='w-40' />
+                        </Link>
                     </div>
                     <ul className="hidden items-center justify-between gap-10 md:flex">
                         {navBarItems}

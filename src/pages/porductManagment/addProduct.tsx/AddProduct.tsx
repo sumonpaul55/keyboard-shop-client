@@ -9,6 +9,7 @@ import { useCreateProductMutation } from '../../../redux/features/products/produ
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const AddProduct: React.FC = () => {
+
     const [rating, setRateing] = useState(1);
     const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -47,13 +48,13 @@ const AddProduct: React.FC = () => {
                     await createProduct(productData)
                     // console.log(res)
                     toast.success('Product Added Successfully', { id: "productImg" })
+
                 } else {
                     toast.error("Something went wrong Product Image not Uploading", { id: "productImg" })
                 }
             }).catch(() => {
                 toast.error("Product image upload failed", { id: "productImg" })
             })
-
     };
 
     const onFinishFailed: FormProps['onFinishFailed'] = (errorInfo) => {

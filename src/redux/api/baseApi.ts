@@ -6,7 +6,8 @@ import { tagTypesList } from "../Types";
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
+  // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://mechanical-keyboard-shop-server-xi.vercel.app" }),
   endpoints: () => ({}),
   tagTypes: tagTypesList,
 });

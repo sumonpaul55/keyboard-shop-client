@@ -53,7 +53,6 @@ const EditProduct = ({ product }: any) => {
             </Space>
             <Modal
                 open={open}
-                title="Title"
                 onOk={handleOk}
                 onCancel={handleCancel}>
                 <div className='max-w-[80%] mx-auto shadow rounded p-6 bg-white'>

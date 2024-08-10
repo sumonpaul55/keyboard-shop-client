@@ -33,7 +33,6 @@ const SuccessPage = () => {
                 >
                     <Link to="/products"
                         className="px-6 py-3 bg-pink-500 text-white font-bold rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300"
-                        onClick={() => window.location.href = '/'}
                     >
                         Continue Shopping
                     </Link>
