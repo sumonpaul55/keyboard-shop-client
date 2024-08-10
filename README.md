@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+## Frontend keyhub: React with Vite, TypeScript, Redux, RTK Query.
 
 Run this project locally
 
