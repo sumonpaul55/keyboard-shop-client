@@ -30,7 +30,7 @@ const Home = () => {
                             <div className="flex gap-6 mt-10 justify-center">
                                 <Link to="/products"><Button className="px-5 md:px-10 py-4 bg-primary border-primary text-white md:text-lg">View All</Button></Link>
                                 <Button className="px-5 md:px-10 py-4 bg-primary border-primary text-white md:text-lg">
-                                    <Link to="/product-details/66b5321616a8bf8e477c9414">Explore</Link>
+                                    <Link to="/brand/Logitech">Explore</Link>
                                 </Button>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 
 import './App.css'
 import Mainlayout from './layouts/Mainlayout'
+import Gotop from './pages/commonPage/Gotop'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <Mainlayout></Mainlayout>
 
+      <Gotop />
     </>
   )
 }

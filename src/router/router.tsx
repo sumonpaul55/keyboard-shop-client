@@ -12,6 +12,7 @@ import Contact from "../pages/contact/Contact";
 import BrandProducts from "../pages/productPage/BrandProducts";
 import Checkout from "../pages/checkout/Checkout";
 import SuccessPage from "../pages/checkout/SuccessCheckedoutPage";
+import NotFound from "../pages/commonPage/NotFound";
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+        errorElement: <NotFound />,
         children: [
             {
                 path: "/",
