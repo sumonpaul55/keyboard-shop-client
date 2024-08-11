@@ -8,7 +8,7 @@ const Contact = () => {
 
     const keyboards = [
         { name: "Mechanical Keyboard", price: "800.00", image: "https://i.ibb.co/pj9KjKj/razer-cy.jpg" },
-        { name: "Wireless Keyboard", price: "1600.99", image: "https://i.ibb.co/4jCtMdg/logi.jpg" },
+        { name: "Wireless Keyboard", price: "1600.99", image: "https://i.ibb.co/MpCP9Ns/mechanical-keyboard.jpg" },
         { name: "Gaming Keyboard", price: "3400.00", image: "https://i.ibb.co/F6PJBNg/corsiar.jpg" },
     ];
 
