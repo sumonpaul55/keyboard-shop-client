@@ -72,17 +72,17 @@ const ProductTAble: React.FC = () => {
         {
             title: 'Brand',
             dataIndex: 'brand',
-            render: (p) => <h4 className='font-bold text-xs sm:text-base text-center'>{p}</h4>
+            render: (p) => <h4 className='font-bold text-xs sm:text-base'>{p}</h4>
         },
         {
             title: 'Quantity',
             dataIndex: 'availableQuantity',
-            render: (p) => <h4 className='font-bold text-xs sm:text-base text-center'>{p}</h4>
+            render: (p) => <h4 className='font-bold text-xs sm:text-base'>{p}</h4>
         },
         {
             title: 'Price',
             dataIndex: 'price',
-            render: (p) => <h4 className='font-bold text-xs sm:text-sm whitespace-nowrap lg:text-base text-center'>৳ {p}</h4>
+            render: (p) => <h4 className='font-bold text-xs sm:text-sm whitespace-nowrap lg:text-base'>৳ {p}</h4>
         },
         {
             title: 'Action',

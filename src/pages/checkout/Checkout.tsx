@@ -68,8 +68,8 @@ const Checkout = () => {
                                         <Input placeholder='Email' />
                                     </Form.Item>
                                 </div>
-                                <Form.Item<FieldType> name="address" className='flex-1' rules={[{ required: true, message: "Address is required" }]} label="Address">
-                                    <Input placeholder='Email' />
+                                <Form.Item<FieldType> name="address" className='flex-1' rules={[{ required: true, message: "Address is required" }]} label="Delivery Address">
+                                    <Input placeholder='Delivery Address' />
                                 </Form.Item>
                                 <Form.Item<FieldType> name="phone" className='flex-1' rules={[{ required: true, message: "You Should provide an Phone number" }]} label="Phone">
                                     <Input placeholder='Phone Number' />
@@ -77,7 +77,7 @@ const Checkout = () => {
                                 <Form.Item<FieldType> label="payment Method" name="paymentMethod" className='flex-1' rules={[{ required: true, message: "Please Select the Payment method" }]}>
                                     <Radio.Group className='flex'>
                                         <Radio value="Cash" className='flex items-center'>Cash On Delivery</Radio>
-                                        <Radio value="Stripe" className='flex items-center'>Stripe</Radio>
+                                        <Radio value="Stripe" className='flex items-center' disabled>Stripe</Radio>
                                     </Radio.Group>
                                 </Form.Item>
                             </div>

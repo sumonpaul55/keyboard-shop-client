@@ -44,8 +44,6 @@ const ProductPage = () => {
         return options.push({ value: bname, label: bname })
     })
 
-
-
     // handle select change
     const handleChange = (value: any) => {
         setBrand(value)
@@ -94,7 +92,7 @@ const ProductPage = () => {
                                     }
 
                                 </div>
-                                <h2 className='md:text-lg font-bold text-xs sm:text-base mt-10'>Sort By Price</h2>
+                                <h2 className='md:text-lg font-bold text-xs sm:text-base mt-10 mb-3'>Sort By Price</h2>
                                 <div className='w-full px-4 md:px-5'>
 
                                     <Select

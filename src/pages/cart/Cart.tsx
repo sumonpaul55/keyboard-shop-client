@@ -119,7 +119,7 @@ const Cart = () => {
                                     <div className="md:w-[90%] mx-auto">
                                         <div className="flex justify-between">
                                             <h1 className="font-bold text-lg sm:text-xl">Total</h1>
-                                            <h3 className="font-semibold sm:text-lg md:text-xl">{totalAmount}</h3>
+                                            <h3 className="font-semibold sm:text-lg md:text-xl">{totalAmount.toFixed(2)}</h3>
                                         </div>
 
                                         <div className="text-center mt-5">
