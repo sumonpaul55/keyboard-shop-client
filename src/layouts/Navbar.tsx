@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaCartPlus } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAppSelector } from '../redux/hook';
 import logo from '../../src/assets/kyehublogo.png'
 export const NavBar = () => {
@@ -11,37 +11,49 @@ export const NavBar = () => {
     const dropDownMenuRef = useRef<HTMLDivElement | undefined | any>();
     const navBarItems = [
         <li className="" key="1">
-            <Link to="/" className='group flex cursor-pointer flex-col'>
+            <NavLink to="/" className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+            }>
                 Home<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </NavLink>
         </li>,
         <li className="" key="2">
-            <Link to="/products" className='group flex cursor-pointer flex-col'>
+            <NavLink to="/products" className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+            }>
                 Products<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </NavLink>
         </li>,
-        <li className="" key="3">
-            <Link to="/about-us" className='group flex cursor-pointer flex-col'>
+        <li className="" key="3" >
+            <NavLink to="/about-us" className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+            }>
                 About Us<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </NavLink>
         </li>,
         <li className="" key="4">
-            <Link to="/contact-us" className='group flex cursor-pointer flex-col'>
+            <NavLink to="/contact-us" className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+            }>
                 Contact Us<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </NavLink>
         </li>,
         <li className="relative w-fit" key={5}>
-            <Link to="/cart" className='group flex cursor-pointer flex-col'>
+            <NavLink to="/cart" className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+            }>
                 <FaCartPlus size={25} color='' /><span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </NavLink>
             {
                 <span className='absolute -top-2 text-sm bg-red-500 size-5 text-center rounded-full -right-4 text-white flex items-center justify-center'>{state?.length ? state.length : 0}</span>
             }
         </li>,
         <li className="" key="6">
-            <Link to="/product-manage" className='group flex cursor-pointer flex-col'>
+            <NavLink to="/product-manage" className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+            }>
                 Product Manage<span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </NavLink>
         </li>,
 
     ]
@@ -57,12 +69,12 @@ export const NavBar = () => {
         };
     }, []);
     return (
-        <section className='px-4 pt-2 pb-1 sticky top-0 z-[9999] bg-white shadow-lg'>
+        <section className='px-2 pt-2 pb-1 sticky top-0 z-[9999] bg-white shadow-lg'>
             <div className="container mx-auto">
                 <nav className="flex w-full items-center justify-between">
                     <div className="cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold transition-all duration-200 hover:scale-110">
                         <Link to={"/"}>
-                            <img src={logo} alt="keyhub" className='w-40' />
+                            <img src={logo} alt="keyhub" className='w-32' />
                         </Link>
                     </div>
                     <ul className="hidden items-center justify-between gap-10 md:flex">

@@ -12,3 +12,7 @@
         margin: -4px;
       }
 }
+.active{
+    color: rgb(4, 4, 163);
+    font-weight: bold;
+}
