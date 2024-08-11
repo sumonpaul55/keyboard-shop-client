@@ -14,7 +14,9 @@ const ProductPage = () => {
     const [range, setRange] = useState<string | undefined>()
     const [page, setPage] = useState(1);
     const [selectItem, setSelectItem] = useState([])
-    const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand, page: page })
+    const [sort, setsort] = useState({})
+    const { data, isLoading } = useGetAllProductQuery({ search, limit, range, brand, page: page, sort })
+    const [sortByRange, setSortByRang] = useState("Sort By Price")
 
     // const [totalDocument, setTotalDocument] = useState(data?.data?.totalDocument)
 
@@ -42,22 +44,29 @@ const ProductPage = () => {
         return options.push({ value: bname, label: bname })
     })
 
+
+
     // handle select change
     const handleChange = (value: any) => {
         setBrand(value)
         setSelectItem(value)
     }
+    // console.log(totalDocument)
+
+    const handleLowtoHighChange = (value: any) => {
+        setsort(value)
+        setSortByRang(value)
+    }
+
     // handle reset
     const handleReset = () => {
         setBrand({})
         setSearch("")
         setRange(undefined)
         setSelectItem([])
-
+        setsort("")
+        setSortByRang("Sort By Price")
     }
-    // console.log(totalDocument)
-    // page number
-
     return (
         <main className='p-0 md:p-2'>
             <section className='py-5'>
@@ -83,6 +92,21 @@ const ProductPage = () => {
                                     {
                                         priceRange?.map((items, idx) => (<Button onClick={() => { setRange(items) }} key={idx} className=''>{items}</Button>))
                                     }
+
+                                </div>
+                                <h2 className='md:text-lg font-bold text-xs sm:text-base mt-10'>Sort By Price</h2>
+                                <div className='w-full px-4 md:px-5'>
+
+                                    <Select
+                                        className='w-full'
+                                        onChange={handleLowtoHighChange}
+                                        options={[
+                                            { value: "price", label: "Low To High" },
+                                            { value: "-price", label: "High To Low" }
+                                        ]}
+                                        placeholder="Select Your Required Brand"
+                                        value={sortByRange}
+                                    />
                                 </div>
                             </div>
                             <div className='md:p-4 mt-3 mx-5'>

@@ -32,6 +32,9 @@ export const productApi = baseApi.injectEndpoints({
         if (params?.range) {
           query.append("range", params?.range);
         }
+        if (params?.sort) {
+          query.append("sort", params?.sort);
+        }
         return {
           url: "/products",
           method: "GET",
