@@ -38,7 +38,9 @@ const FeaturedProduct = (product: TProduct) => {
         }
         else {
             dispatch(addToCart(product));
-            toast.success("Product added to your cart")
+            toast.success("Product added to your cart", {
+                duration: 1000
+            })
         }
     }
     // console.log(product)
