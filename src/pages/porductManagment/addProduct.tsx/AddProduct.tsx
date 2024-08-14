@@ -9,7 +9,7 @@ import { useCreateProductMutation } from '../../../redux/features/products/produ
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const AddProduct: React.FC = () => {
-
+    const [form] = Form.useForm()
     const [rating, setRateing] = useState(1);
     const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -27,7 +27,6 @@ const AddProduct: React.FC = () => {
         let brand = values.brand.charAt(0).toUpperCase() + values.brand.slice(1)
         let name = values.name.charAt(0).toUpperCase() + values.name.slice(1)
         const { description, price, availableQuantity }: any = values
-
 
         const formData = new FormData();
         fileList.forEach((file) => {
@@ -55,6 +54,9 @@ const AddProduct: React.FC = () => {
             }).catch(() => {
                 toast.error("Product image upload failed", { id: "productImg" })
             })
+        form.resetFields()
+        setRateing(1)
+        setFileList([])
     };
 
     const onFinishFailed: FormProps['onFinishFailed'] = (errorInfo) => {

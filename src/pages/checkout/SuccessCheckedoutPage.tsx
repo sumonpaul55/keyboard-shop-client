@@ -11,7 +11,6 @@ const SuccessPage = () => {
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white max-w-full overflow-hidden">
             {/* Confetti Animation */}
             <Confetti width={width} height={height} />
-
             {/* Success Message Box */}
             <div className="bg-white p-8 rounded-lg shadow-lg text-center">
                 <motion.div
