@@ -47,16 +47,16 @@ const AddProduct: React.FC = () => {
                     await createProduct(productData)
                     // console.log(res)
                     toast.success('Product Added Successfully', { id: "productImg" })
-
+                    form.resetFields()
+                    setRateing(1)
+                    setFileList([])
                 } else {
                     toast.error("Something went wrong Product Image not Uploading", { id: "productImg" })
                 }
             }).catch(() => {
                 toast.error("Product image upload failed", { id: "productImg" })
             })
-        form.resetFields()
-        setRateing(1)
-        setFileList([])
+
     };
 
     const onFinishFailed: FormProps['onFinishFailed'] = (errorInfo) => {
