@@ -9,7 +9,7 @@ import { useCreateProductMutation } from '../../../redux/features/products/produ
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
 const AddProduct: React.FC = () => {
-    const [form] = Form.useForm()
+    const [form] = Form.useForm();
     const [rating, setRateing] = useState(1);
     const [createProduct] = useCreateProductMutation()
     const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -107,10 +107,6 @@ const AddProduct: React.FC = () => {
                             </Flex>
                         </Col>
                     </Row>
-
-
-
-
                     <Col span="8" style={{ margin: "auto", marginTop: "50px" }}>
                         <Button style={{ margin: "auto", width: "100%" }} type="primary" htmlType="submit">Submit</Button>
                     </Col>
