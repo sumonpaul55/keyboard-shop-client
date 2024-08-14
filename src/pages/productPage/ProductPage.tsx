@@ -5,7 +5,7 @@ import FeaturedProduct, { TProduct } from '../../components/FeaturedProduct/Feat
 import { Button, Input, Pagination, Select, SelectProps } from 'antd'
 import { useGetBrand } from '../../useHooks/useGetBrand'
 import { motion } from "framer-motion";
-import { useDebounce } from 'react-use'
+import { useDebounce } from '../../useHooks/useDebounce'
 
 const ProductPage = () => {
     const { brandLoading, brands }: any = useGetBrand("brand")
@@ -17,8 +17,7 @@ const ProductPage = () => {
     const [selectItem, setSelectItem] = useState([])
     const [sort, setsort] = useState({})
     const [sortByRange, setSortByRang] = useState("Sort By Price")
-
-    const srcDebounce = useDebounce(search)
+    const srcDebounce = useDebounce(search, 1000)
     const { data, isLoading } = useGetAllProductQuery({ search: srcDebounce, limit, range, brand, page: page, sort })
     // const [totalDocument, setTotalDocument] = useState(data?.data?.totalDocument)
 
