@@ -12,8 +12,6 @@ const Cart = () => {
     const state = useAppSelector((state) => state.cart.cart);
     const dispatch = useAppDispatch()
 
-
-
     const handleQuantityChange = (product: any, quantity: number) => {
         // const isQuantityExist = state?.find(items => id === items._id)
         if (quantity >= product.availableQuantity) {

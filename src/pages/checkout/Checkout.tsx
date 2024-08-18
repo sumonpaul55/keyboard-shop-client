@@ -13,6 +13,17 @@ export type FieldType = {
     address: string;
     paymentMethod: string;
 };
+type TError = {
+    data: {
+        success: boolean;
+        message: string;
+        status: number;
+    }
+}
+type TResponse = {
+    data?: any;
+    error?: TError
+}
 
 const Checkout = () => {
     const state = useAppSelector(state => state.cart.cart)
@@ -29,6 +40,7 @@ const Checkout = () => {
     const products: { productId: string; productQuantity: number }[] = []
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+        const confirmId = toast.loading("Creating..")
         const { name, email, phone, address, paymentMethod } = values;
 
         state?.map((items) => (
@@ -37,16 +49,18 @@ const Checkout = () => {
         const checkoutItem = {
             name, email, phone, address, paymentMethod, products, totalAmout, discountAmount
         }
-        const res = await addOrder(checkoutItem)
-        if (res?.data?.data) {
+        const res = await addOrder(checkoutItem) as TResponse
+        if (res?.data?.success) {
             dispatch(clearCart())
-            toast.success(`${res.data.message}`, {
-                duration: 2000
+            toast.success(`${res?.data?.message}`, {
+                duration: 2000, id: confirmId
             })
             navigate("/checkedout-successfull")
         }
         if (res?.error) {
-            toast.error(`Something went wrong. Checkout not completed`)
+            toast.error(res?.error?.data?.message, {
+                id: confirmId
+            })
         }
     };
 
