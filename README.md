@@ -1,4 +1,4 @@
-# E-Commerce Platform
+# Keyboard Shop
 
 This is a comprehensive full-stack e-commerce platform built with the MERN stack and TypeScript. The application includes key functionalities such as user authentication, product management, booking, and payment handling, using a combination of powerful tools like React, Redux, RTK Query, and Tailwind CSS for the frontend, and Mongoose, Express, and JWT for the backend.
 
