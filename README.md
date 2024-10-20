@@ -66,7 +66,7 @@ This is a comprehensive full-stack e-commerce platform built with the MERN stack
 
 ## Tech Stack
 
-- **Frontend**: React, Redux, RTK Query, Tailwind CSS, TypeScript
+- **Frontend**: React, Redux, RTK Query, Tailwind CSS, TypeScript, frmmer motion
 - **Backend**: Express.js, Mongoose, JWT Authentication, Stripe API
 - **Database**: MongoDB
 - **Payment**: Stripe Integration
